@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, BookOpen, ExternalLink } from 'lucide-react';
+import { ArrowLeft, BookOpen, ExternalLink, Shield, Target, Crosshair } from 'lucide-react';
 import { tutorialSections } from '@/constants/howto';
+import redDot from '@/assets/red-dot.png';
+import blueDot from '@/assets/blue-dot.png';
 
-// Guide URL - replace with your actual Google Docs link
+// Guide URL
 const GUIDE_URL = 'https://docs.google.com/document/d/17dbGNQC-BPwQHfUeeI1-0o5-_Gohf6XWWTObdLhV9VA/edit?tab=t.0';
-
-
 
 const HowToPlay = () => {
     // Scroll to top when component mounts
@@ -15,17 +15,51 @@ const HowToPlay = () => {
     }, []);
 
     return (
-        <div className="min-h-screen bg-background">
+        <div className="min-h-screen bg-background relative overflow-hidden">
+            {/* Background Elements */}
+            <div className="fixed inset-0 pointer-events-none">
+                {/* Fog overlay */}
+                <div className="fog-overlay absolute inset-0 opacity-60" />
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background/80" />
+            </div>
+
+            {/* Floating Tactical Dots */}
+            <img
+                src={redDot}
+                alt=""
+                className="fixed top-[15%] left-[5%] w-6 h-6 md:w-10 md:h-10 opacity-40 animate-float pointer-events-none z-0"
+                aria-hidden="true"
+            />
+            <img
+                src={blueDot}
+                alt=""
+                className="fixed top-[35%] right-[8%] w-8 h-8 md:w-12 md:h-12 opacity-35 animate-float-delayed pointer-events-none z-0"
+                aria-hidden="true"
+            />
+            <img
+                src={redDot}
+                alt=""
+                className="fixed bottom-[40%] left-[3%] w-5 h-5 md:w-8 md:h-8 opacity-30 animate-float-delayed pointer-events-none z-0"
+                aria-hidden="true"
+            />
+            <img
+                src={blueDot}
+                alt=""
+                className="fixed bottom-[25%] right-[5%] w-6 h-6 md:w-9 md:h-9 opacity-35 animate-float pointer-events-none z-0"
+                aria-hidden="true"
+            />
+
             {/* Header */}
-            <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-sm border-b border-border/50">
+            <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-war-gold/20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16">
                         <Link
                             to="/"
-                            className="flex items-center gap-2 text-foreground/80 hover:text-primary transition-colors duration-200"
+                            className="flex items-center gap-2 text-foreground/80 hover:text-war-gold transition-colors duration-300 group"
                         >
-                            <ArrowLeft className="w-5 h-5" />
-                            <span className="text-sm uppercase tracking-wider">Back to Home</span>
+                            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-300" />
+                            <span className="text-sm uppercase tracking-wider font-medium">Return to HQ</span>
                         </Link>
                         <span className="font-military text-xl md:text-2xl text-gradient-gold">
                             WAR OF DOTS
@@ -35,39 +69,65 @@ const HowToPlay = () => {
             </header>
 
             {/* Main Content */}
-            <main className="pt-24 pb-16 px-4">
+            <main className="relative z-10 pt-28 pb-20 px-4">
                 <div className="max-w-4xl mx-auto">
                     {/* Title Section */}
-                    <div className="text-center mb-16">
-                        <div className="inline-flex items-center gap-3 mb-4">
-                            <BookOpen className="w-8 h-8 md:w-10 md:h-10 text-war-gold" />
-                            <h1 className="font-military text-4xl md:text-6xl text-gradient-gold">
-                                How to Play
-                            </h1>
+                    <div className="text-center mb-20 animate-fade-up">
+                        <div className="inline-flex items-center justify-center gap-4 mb-6">
+                            <Crosshair className="w-8 h-8 md:w-10 md:h-10 text-war-gold/70" />
+                            <BookOpen className="w-10 h-10 md:w-14 md:h-14 text-war-gold" />
+                            <Crosshair className="w-8 h-8 md:w-10 md:h-10 text-war-gold/70" />
                         </div>
+                        <h1 className="font-military text-5xl md:text-7xl text-gradient-gold mb-4 drop-shadow-lg">
+                            FIELD MANUAL
+                        </h1>
+                        <p className="text-lg md:text-xl text-muted-foreground uppercase tracking-[0.2em]">
+                            Tactical Operations Guide
+                        </p>
+                        {/* Decorative line */}
+                        <div className="mt-8 mx-auto w-64 h-1 bg-gradient-to-r from-transparent via-war-gold/50 to-transparent" />
                     </div>
 
                     {/* Tutorial Sections */}
-                    <div className="space-y-16">
+                    <div className="space-y-12">
                         {tutorialSections.map((section, index) => (
-                            <div key={index} className="war-card p-6 md:p-8 overflow-hidden">
-                                {/* Section number */}
-                                <div className="flex items-center gap-3 mb-4">
-                                    <div className="w-8 h-8 rounded-full bg-war-gold/90 flex items-center justify-center">
-                                        <span className="font-military text-sm text-background">{index + 1}</span>
+                            <div
+                                key={index}
+                                className="war-card p-6 md:p-10 overflow-hidden relative group animate-fade-up"
+                                style={{ animationDelay: `${index * 100}ms` }}
+                            >
+                                {/* Tactical corner markers */}
+                                <div className="absolute top-3 left-3 w-4 h-4 border-l-2 border-t-2 border-war-gold/40" />
+                                <div className="absolute top-3 right-3 w-4 h-4 border-r-2 border-t-2 border-war-gold/40" />
+                                <div className="absolute bottom-3 left-3 w-4 h-4 border-l-2 border-b-2 border-war-gold/40" />
+                                <div className="absolute bottom-3 right-3 w-4 h-4 border-r-2 border-b-2 border-war-gold/40" />
+
+                                {/* Section header */}
+                                <div className="flex items-center gap-4 mb-6">
+                                    <div className="relative">
+                                        <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-war-gold to-war-gold/70 flex items-center justify-center shadow-lg shadow-war-gold/20">
+                                            <span className="font-military text-lg md:text-xl text-background">{index + 1}</span>
+                                        </div>
+                                        {/* Pulse ring */}
+                                        <div className="absolute inset-0 rounded-full border-2 border-war-gold/30 animate-pulse-slow" />
                                     </div>
-                                    <h2 className="font-military text-2xl md:text-3xl text-gradient-gold">
-                                        {section.title}
-                                    </h2>
+                                    <div>
+                                        <h2 className="font-military text-2xl md:text-3xl text-gradient-gold">
+                                            {section.title}
+                                        </h2>
+                                        <div className="h-0.5 w-20 bg-gradient-to-r from-war-gold/50 to-transparent mt-1" />
+                                    </div>
                                 </div>
 
                                 {/* Content text */}
-                                <p className="text-lg text-foreground/90 mb-6 leading-relaxed">
+                                <p className="text-lg md:text-xl text-foreground/90 mb-8 leading-relaxed pl-4 border-l-2 border-war-gold/30">
                                     {section.content}
                                 </p>
 
                                 {/* Tutorial Image */}
-                                <div className="rounded-lg overflow-hidden border border-border/50">
+                                <div className="relative rounded-lg overflow-hidden border-2 border-border/50 shadow-xl shadow-black/30 group-hover:border-war-gold/30 transition-colors duration-300">
+                                    {/* Image overlay effect */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent z-10 pointer-events-none" />
                                     <img
                                         src={section.image}
                                         alt={section.title}
@@ -79,20 +139,28 @@ const HowToPlay = () => {
                     </div>
 
                     {/* Questions Section */}
-                    <div className="mt-16 text-center">
-                        <div className="war-card p-8 md:p-12">
-                            <h2 className="font-military text-3xl md:text-4xl text-gradient-gold mb-4">
-                                Questions?
+                    <div className="mt-20 text-center animate-fade-up" style={{ animationDelay: '500ms' }}>
+                        <div className="war-card p-10 md:p-14 relative">
+                            {/* Corner markers */}
+                            <div className="absolute top-4 left-4 w-6 h-6 border-l-2 border-t-2 border-war-gold/50" />
+                            <div className="absolute top-4 right-4 w-6 h-6 border-r-2 border-t-2 border-war-gold/50" />
+                            <div className="absolute bottom-4 left-4 w-6 h-6 border-l-2 border-b-2 border-war-gold/50" />
+                            <div className="absolute bottom-4 right-4 w-6 h-6 border-r-2 border-b-2 border-war-gold/50" />
+
+                            <Shield className="w-12 h-12 md:w-16 md:h-16 text-war-gold mx-auto mb-6" />
+                            <h2 className="font-military text-3xl md:text-5xl text-gradient-gold mb-4">
+                                NEED INTEL?
                             </h2>
-                            <p className="text-lg text-muted-foreground mb-8">
-                                Have more questions? Consult the Guide here!
+                            <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-md mx-auto">
+                                Access the complete tactical documentation for advanced strategies
                             </p>
                             <a
                                 href={GUIDE_URL}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-3 btn-war-gold px-8 py-4 rounded-md font-semibold uppercase tracking-wider text-lg"
+                                className="inline-flex items-center gap-3 btn-war-gold px-10 py-4 rounded-md font-semibold uppercase tracking-wider text-lg hover:scale-105 transition-transform duration-300"
                             >
+                                <Target className="w-5 h-5" />
                                 <span>View Full Guide</span>
                                 <ExternalLink className="w-5 h-5" />
                             </a>
@@ -100,12 +168,13 @@ const HowToPlay = () => {
                     </div>
 
                     {/* Bottom CTA */}
-                    <div className="text-center mt-12">
+                    <div className="text-center mt-16">
                         <Link
                             to="/"
-                            className="btn-war px-8 py-3 rounded-md font-semibold uppercase tracking-wider inline-block text-foreground"
+                            className="btn-war px-10 py-4 rounded-md font-semibold uppercase tracking-wider inline-flex items-center gap-3 text-foreground hover:scale-105 transition-transform duration-300"
                         >
-                            Back to Home
+                            <ArrowLeft className="w-5 h-5" />
+                            Return to Base
                         </Link>
                     </div>
                 </div>
