@@ -20,6 +20,6 @@ export const features = [
     {
         icon: Star,
         title: 'Special Events',
-        description: 'limited-time challenges and map-altering events will make your War of Dots experience truly interesting',
+        description: 'Limited-time challenges and map-altering events will make your War of Dots experience truly interesting',
     },
 ];
