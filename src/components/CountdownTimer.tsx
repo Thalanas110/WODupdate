@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import FlipDigit from './FlipDigit';
 import steamLogo from '@/assets/steam logo.webp';
+import { RELEASE_DATE, STEAM_URL, calculateTimeLeft } from '@/constants/countdown';
 
 interface TimeLeft {
   days: number;
@@ -9,37 +10,31 @@ interface TimeLeft {
   seconds: number;
 }
 
-// January 17, 2026
-const RELEASE_DATE = new Date('2026-01-17T00:00:00').getTime();
-// steam link
-const STEAM_URL = 'https://store.steampowered.com/app/3902430/War_of_Dots/';
-
 const CountdownTimer = () => {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [isExpired, setIsExpired] = useState(false);
 
   useEffect(() => {
-    const calculateTimeLeft = () => {
-      const now = Date.now();
-      const difference = RELEASE_DATE - now;
-
-      if (difference > 0) {
-        setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60),
-        });
-      } else {
+    const updateCountdown = () => {
+      const result = calculateTimeLeft(RELEASE_DATE);
+      setTimeLeft({
+        days: result.days,
+        hours: result.hours,
+        minutes: result.minutes,
+        seconds: result.seconds,
+      });
+      if (result.isExpired) {
         setIsExpired(true);
       }
     };
 
-    calculateTimeLeft();
-    const timer = setInterval(calculateTimeLeft, 1000);
+    updateCountdown();
+    const timer = setInterval(updateCountdown, 1000);
 
     return () => clearInterval(timer);
   }, []);
+
+  // countdown timer
 
   const [useFlip, setUseFlip] = useState(false);
 
