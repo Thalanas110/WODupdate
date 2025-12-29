@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
@@ -7,6 +8,7 @@ const Navbar = () => {
   const navLinks = [
     { label: 'About', href: '#about' },
     { label: 'Gameplay', href: '#gameplay' },
+    { label: 'How to Play', href: '/how-to-play', isRoute: true },
     { label: 'YouTube', href: '#youtube' },
     { label: 'Discord', href: '#discord' },
   ];
@@ -24,15 +26,25 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-sm uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors duration-200"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) =>
+              link.isRoute ? (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  className="text-sm uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors duration-200"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="text-sm uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors duration-200"
+                >
+                  {link.label}
+                </a>
+              )
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -48,16 +60,27 @@ const Navbar = () => {
         {/* Mobile Navigation */}
         {isOpen && (
           <div className="md:hidden py-4 border-t border-border/50">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className="block py-3 text-sm uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors duration-200"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) =>
+              link.isRoute ? (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className="block py-3 text-sm uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors duration-200"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className="block py-3 text-sm uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors duration-200"
+                >
+                  {link.label}
+                </a>
+              )
+            )}
           </div>
         )}
       </div>
@@ -66,3 +89,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

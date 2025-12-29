@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom';
 import redDot from '@/assets/red-dot.png';
 import blueDot from '@/assets/blue-dot.png';
 
 // features
 import { features } from '@/constants/aboutpage';
-import { Shield } from 'lucide-react';
+import { Shield, BookOpen } from 'lucide-react';
 
 const AboutSection = () => {
   return (
@@ -96,6 +97,17 @@ const AboutSection = () => {
                 className="w-20 h-20 md:w-28 md:h-28 relative z-10 drop-shadow-[0_0_15px_rgba(200,50,50,0.5)] hover:scale-110 transition-transform duration-300"
               />
             </div>
+          </div>
+
+          {/* How to Play Button */}
+          <div className="mt-10">
+            <Link
+              to="/how-to-play"
+              className="inline-flex items-center gap-3 btn-war-gold px-8 py-3 rounded-md font-semibold uppercase tracking-wider"
+            >
+              <BookOpen className="w-5 h-5" />
+              How to Play
+            </Link>
           </div>
         </div>
       </div>
