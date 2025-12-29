@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, BookOpen, ExternalLink } from 'lucide-react';
 import { tutorialSections } from '@/constants/howto';
@@ -8,6 +9,11 @@ const GUIDE_URL = 'https://docs.google.com/document/d/17dbGNQC-BPwQHfUeeI1-0o5-_
 
 
 const HowToPlay = () => {
+    // Scroll to top when component mounts
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <div className="min-h-screen bg-background">
             {/* Header */}
