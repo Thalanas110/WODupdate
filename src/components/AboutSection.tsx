@@ -74,12 +74,23 @@ const AboutSection = () => {
           <p className="font-military text-xl md:text-2xl text-gradient-blood">
             Think you can rise above the chaos and outsmart the rest?
           </p>
-          <p className="text-lg text-muted-foreground mt-2 mb-8">
+          <p className="text-lg text-muted-foreground mt-2">
             The battle's waiting.
           </p>
 
-          {/* Red and Blue dots display */}
-          <div className="flex items-center justify-center gap-6 md:gap-10 mt-8">
+          {/* How to Play Button - positioned between text and dots */}
+          <div className="mt-8 mb-10">
+            <Link
+              to="/how-to-play"
+              className="inline-flex items-center gap-3 btn-war-gold px-8 py-3 rounded-md font-semibold uppercase tracking-wider hover:scale-105 transition-transform duration-300"
+            >
+              <BookOpen className="w-5 h-5" />
+              How to Play
+            </Link>
+          </div>
+
+          {/* Red and Blue dots display - visual finale */}
+          <div className="flex items-center justify-center gap-6 md:gap-10">
             <div className="relative group">
               <div className="absolute inset-0 bg-war-blue/30 rounded-full blur-xl scale-110 group-hover:scale-125 transition-transform duration-500" />
               <img
@@ -97,17 +108,6 @@ const AboutSection = () => {
                 className="w-20 h-20 md:w-28 md:h-28 relative z-10 drop-shadow-[0_0_15px_rgba(200,50,50,0.5)] hover:scale-110 transition-transform duration-300"
               />
             </div>
-          </div>
-
-          {/* How to Play Button */}
-          <div className="mt-10">
-            <Link
-              to="/how-to-play"
-              className="inline-flex items-center gap-3 btn-war-gold px-8 py-3 rounded-md font-semibold uppercase tracking-wider"
-            >
-              <BookOpen className="w-5 h-5" />
-              How to Play
-            </Link>
           </div>
         </div>
       </div>
