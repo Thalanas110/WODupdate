@@ -4,8 +4,6 @@
 
 A strategic multiplayer game where every move matters. This repository contains the official website for War of Dots — built with React, TypeScript, and modern web technologies.
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/your-badge-id/deploy-status)](https://warofdots.net)
-
 ---
 
 ## ✨ Features
