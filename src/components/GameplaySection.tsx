@@ -2,22 +2,9 @@ import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Crosshair, Target } from 'lucide-react';
 import redDot from '@/assets/red-dot.png';
 import blueDot from '@/assets/blue-dot.png';
+import { screenshots } from '@/constants/screenshotsgp.ts';
 
-import gameplay1 from '@/assets/gameplay-1.png';
-import gameplay2 from '@/assets/gameplay-2.png';
-import gameplay3 from '@/assets/gameplay-3.png';
-import gameplay4 from '@/assets/gameplay-4.png';
-import gameplay5 from '@/assets/gameplay-5.png';
-import gameplay6 from '@/assets/gameplay-6.png';
 
-const screenshots = [
-  { src: gameplay1, alt: 'War of Dots Gameplay - River Battles' },
-  { src: gameplay2, alt: 'War of Dots Gameplay - Coastal Assault' },
-  { src: gameplay3, alt: 'War of Dots Gameplay - Mountain Pass' },
-  { src: gameplay4, alt: 'War of Dots Gameplay - Strategic Positioning' },
-  { src: gameplay5, alt: 'War of Dots Gameplay - Forest Combat' },
-  { src: gameplay6, alt: 'War of Dots Gameplay - Bridge Control' },
-];
 
 const GameplaySection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -95,8 +82,8 @@ const GameplaySection = () => {
                   src={screenshot.src}
                   alt={screenshot.alt}
                   className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${index === currentIndex
-                      ? 'opacity-100 scale-100'
-                      : 'opacity-0 scale-105'
+                    ? 'opacity-100 scale-100'
+                    : 'opacity-0 scale-105'
                     }`}
                   loading="lazy"
                 />
@@ -137,8 +124,8 @@ const GameplaySection = () => {
               key={index}
               onClick={() => goToSlide(index)}
               className={`flex-shrink-0 w-16 h-10 md:w-24 md:h-14 rounded-md overflow-hidden border-2 transition-all duration-300 relative ${index === currentIndex
-                  ? 'border-war-gold scale-110 shadow-lg shadow-war-gold/20'
-                  : 'border-border/30 opacity-50 hover:opacity-100 hover:border-border'
+                ? 'border-war-gold scale-110 shadow-lg shadow-war-gold/20'
+                : 'border-border/30 opacity-50 hover:opacity-100 hover:border-border'
                 }`}
             >
               <img
@@ -160,8 +147,8 @@ const GameplaySection = () => {
             <div
               key={index}
               className={`h-0.5 rounded-full transition-all duration-300 ${index === currentIndex
-                  ? 'w-8 bg-war-gold'
-                  : 'w-2 bg-border/50'
+                ? 'w-8 bg-war-gold'
+                : 'w-2 bg-border/50'
                 }`}
             />
           ))}

@@ -8,24 +8,36 @@ export const STEAM_URL = 'https://store.steampowered.com/app/3902430/War_of_Dots
 
 // Time calculation utilities
 export const calculateTimeLeft = (targetDate: number) => {
-    const now = Date.now();
-    const difference = targetDate - now;
+    try {
+        const now = Date.now();
+        const difference = targetDate - now;
 
-    if (difference > 0) {
+        if (difference > 0) {
+            return {
+                days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+                hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+                minutes: Math.floor((difference / 1000 / 60) % 60),
+                seconds: Math.floor((difference / 1000) % 60),
+                isExpired: false,
+            };
+        }
+
         return {
-            days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-            hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-            minutes: Math.floor((difference / 1000 / 60) % 60),
-            seconds: Math.floor((difference / 1000) % 60),
-            isExpired: false,
+            days: 0,
+            hours: 0,
+            minutes: 0,
+            seconds: 0,
+            isExpired: true,
         };
     }
-
-    return {
-        days: 0,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-        isExpired: true,
-    };
+    catch (error) {
+        console.error('Error calculating time left:', error);
+        return {
+            days: 0,
+            hours: 0,
+            minutes: 0,
+            seconds: 0,
+            isExpired: true,
+        };
+    }
 };

@@ -16,14 +16,20 @@ const CountdownTimer = () => {
 
   useEffect(() => {
     const updateCountdown = () => {
-      const result = calculateTimeLeft(RELEASE_DATE);
-      setTimeLeft({
-        days: result.days,
-        hours: result.hours,
-        minutes: result.minutes,
-        seconds: result.seconds,
-      });
-      if (result.isExpired) {
+      try {
+        const result = calculateTimeLeft(RELEASE_DATE);
+        setTimeLeft({
+          days: result.days,
+          hours: result.hours,
+          minutes: result.minutes,
+          seconds: result.seconds,
+        });
+        if (result.isExpired) {
+          setIsExpired(true);
+        }
+      }
+      catch (error) {
+        console.error('Error in CountdownTimer:', error);
         setIsExpired(true);
       }
     };
