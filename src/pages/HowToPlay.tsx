@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, BookOpen, ExternalLink, Shield, Target, Crosshair } from 'lucide-react';
+import { ArrowLeft, BookOpen, ExternalLink, Shield, Target, Crosshair, AlertTriangle, X } from 'lucide-react';
 import { tutorialSections } from '@/constants/howto';
 import redDot from '@/assets/red-dot.png';
 import blueDot from '@/assets/blue-dot.png';
@@ -9,6 +9,8 @@ import blueDot from '@/assets/blue-dot.png';
 const GUIDE_URL = 'https://docs.google.com/document/d/17dbGNQC-BPwQHfUeeI1-0o5-_Gohf6XWWTObdLhV9VA/edit?tab=t.0';
 
 const HowToPlay = () => {
+    const [showModal, setShowModal] = useState(false);
+
     // Scroll to top when component mounts
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -154,16 +156,14 @@ const HowToPlay = () => {
                             <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-md mx-auto">
                                 Access the complete tactical documentation for advanced strategies
                             </p>
-                            <a
-                                href={GUIDE_URL}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <button
+                                onClick={() => setShowModal(true)}
                                 className="inline-flex items-center gap-3 btn-war-gold px-10 py-4 rounded-md font-semibold uppercase tracking-wider text-lg hover:scale-105 transition-transform duration-300"
                             >
                                 <Target className="w-5 h-5" />
                                 <span>View Full Guide</span>
                                 <ExternalLink className="w-5 h-5" />
-                            </a>
+                            </button>
                         </div>
                     </div>
 
@@ -179,6 +179,68 @@ const HowToPlay = () => {
                     </div>
                 </div>
             </main>
+
+            {/* External Link Confirmation Modal */}
+            {showModal && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+                    {/* Backdrop */}
+                    <div
+                        className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+                        onClick={() => setShowModal(false)}
+                    />
+
+                    {/* Modal */}
+                    <div className="relative war-card p-8 md:p-10 max-w-md w-full animate-fade-up">
+                        {/* Corner markers */}
+                        <div className="absolute top-3 left-3 w-5 h-5 border-l-2 border-t-2 border-war-gold/50" />
+                        <div className="absolute top-3 right-3 w-5 h-5 border-r-2 border-t-2 border-war-gold/50" />
+                        <div className="absolute bottom-3 left-3 w-5 h-5 border-l-2 border-b-2 border-war-gold/50" />
+                        <div className="absolute bottom-3 right-3 w-5 h-5 border-r-2 border-b-2 border-war-gold/50" />
+
+                        {/* Close button */}
+                        <button
+                            onClick={() => setShowModal(false)}
+                            className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
+                        >
+                            <X className="w-5 h-5" />
+                        </button>
+
+                        {/* Content */}
+                        <div className="text-center">
+                            <AlertTriangle className="w-14 h-14 text-war-gold mx-auto mb-4" />
+                            <h3 className="font-military text-2xl md:text-3xl text-gradient-gold mb-3">
+                                EXTERNAL LINK
+                            </h3>
+                            <p className="text-muted-foreground mb-6">
+                                You are about to be redirected to an external documentation page on Google Docs.
+                            </p>
+                            <p className="text-sm text-muted-foreground/70 mb-8 break-all">
+                                {GUIDE_URL.substring(0, 50)}...
+                            </p>
+
+                            {/* Buttons */}
+                            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                                <button
+                                    onClick={() => setShowModal(false)}
+                                    className="btn-war px-6 py-3 rounded-md font-semibold uppercase tracking-wider text-foreground"
+                                >
+                                    Cancel
+                                </button>
+                                <a
+                                    href={GUIDE_URL}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={() => setShowModal(false)}
+                                    className="inline-flex items-center justify-center gap-2 btn-war-gold px-6 py-3 rounded-md font-semibold uppercase tracking-wider"
+                                >
+                                    <span>Proceed</span>
+                                    <ExternalLink className="w-4 h-4" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
