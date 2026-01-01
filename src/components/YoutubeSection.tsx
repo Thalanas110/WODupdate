@@ -1,4 +1,5 @@
 import { Button } from "./ui/button";
+import { YOUTUBE_FEATURED_VIDEO_URL, YOUTUBE_CHANNEL_URL } from '@/constants/socials';
 
 const YoutubeSection = () => {
     return (
@@ -11,7 +12,7 @@ const YoutubeSection = () => {
                         <iframe
                             width="100%"
                             height="100%"
-                            src="https://www.youtube.com/embed/11C3NRdxC2c"
+                            src={YOUTUBE_FEATURED_VIDEO_URL}
                             title="YouTube video player"
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -25,7 +26,7 @@ const YoutubeSection = () => {
                         asChild
                     >
                         <a
-                            href="https://www.youtube.com/@TeaAndPython"
+                            href={YOUTUBE_CHANNEL_URL}
                             target="_blank"
                             rel="noopener noreferrer"
                         >

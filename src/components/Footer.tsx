@@ -1,3 +1,5 @@
+import { YOUTUBE_CHANNEL_URL, DISCORD_URL } from '@/constants/socials';
+
 const Footer = () => {
   return (
     <footer className="py-12 px-4 bg-background border-t border-border/50">
@@ -14,7 +16,7 @@ const Footer = () => {
 
           <div className="flex gap-6">
             <a
-              href="https://www.youtube.com/@TeaAndPython"
+              href={YOUTUBE_CHANNEL_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
@@ -25,7 +27,7 @@ const Footer = () => {
               </svg>
             </a>
             <a
-              href="https://discord.gg/warofdots"
+              href={DISCORD_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"

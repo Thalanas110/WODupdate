@@ -1,4 +1,5 @@
 import creatorProfile from '@/assets/creator-profile.png';
+import { YOUTUBE_CHANNEL_URL } from '@/constants/socials';
 
 const CreatorSection = () => {
   return (
@@ -36,13 +37,13 @@ const CreatorSection = () => {
               Game Developer
             </p>
             <p className="text-muted-foreground leading-relaxed max-w-lg">
-              The mastermind behind War of Dots. Passionate about creating engaging 
-              strategic experiences that challenge players to think tactically and 
+              The mastermind behind War of Dots. Passionate about creating engaging
+              strategic experiences that challenge players to think tactically and
               dominate the battlefield.
             </p>
             <div className="mt-6 flex gap-4 justify-center md:justify-start">
               <a
-                href="https://www.youtube.com/@TeaAndPython"
+                href={YOUTUBE_CHANNEL_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-war px-6 py-2 rounded-md text-sm"

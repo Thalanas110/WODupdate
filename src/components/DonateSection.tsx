@@ -1,5 +1,6 @@
 import { Rocket, Heart, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { BUY_ME_COFFEE_URL } from '@/constants/socials';
 
 const DonateSection = () => {
   return (
@@ -43,7 +44,7 @@ const DonateSection = () => {
             size="lg"
             className="bg-gradient-to-r from-war-gold to-yellow-600 hover:from-yellow-600 hover:to-war-gold text-war-darker font-bold text-lg px-8 py-6 rounded-lg shadow-lg shadow-war-gold/20 transition-all duration-300 hover:scale-105"
           >
-            <a href="https://buymeacoffee.com/pythonic_tea" target="_blank" rel="noopener noreferrer">
+            <a href={BUY_ME_COFFEE_URL} target="_blank" rel="noopener noreferrer">
               ☕ Buy Me a Coffee
             </a>
           </Button>
