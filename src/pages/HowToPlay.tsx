@@ -1,15 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, BookOpen, ExternalLink, Shield, Target, Crosshair, AlertTriangle, X, Settings, Gamepad2 } from 'lucide-react';
-import { tutorialSections, customizationSections } from '@/constants/howto';
-import redDot from '@/assets/red-dot.png';
-import blueDot from '@/assets/blue-dot.png';
-import { GUIDE_URL } from '@/constants/socials';
+import { ArrowLeft, BookOpen, ExternalLink, Shield, Target, Crosshair, AlertTriangle, X, Settings, Gamepad2, Palette } from 'lucide-react';
+import { tutorialSections, customizationSections, skinCustomizationSections } from '@/constants/howto';
+import { GUIDE_URL, MODDING_URL } from '@/constants/socials';
 
 
 const HowToPlay = () => {
     const [showModal, setShowModal] = useState(false);
-    const [activeTab, setActiveTab] = useState<'howto' | 'customize'>('howto');
+    const [activeTab, setActiveTab] = useState<'howto' | 'customize' | 'skin'>('howto');
 
     // Scroll to top when component mounts
     useEffect(() => {
@@ -26,31 +24,7 @@ const HowToPlay = () => {
                 <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background/80" />
             </div>
 
-            {/* Floating Tactical Dots */}
-            <img
-                src={redDot}
-                alt=""
-                className="fixed top-[15%] left-[5%] w-6 h-6 md:w-10 md:h-10 opacity-40 animate-float pointer-events-none z-0"
-                aria-hidden="true"
-            />
-            <img
-                src={blueDot}
-                alt=""
-                className="fixed top-[35%] right-[8%] w-8 h-8 md:w-12 md:h-12 opacity-35 animate-float-delayed pointer-events-none z-0"
-                aria-hidden="true"
-            />
-            <img
-                src={redDot}
-                alt=""
-                className="fixed bottom-[40%] left-[3%] w-5 h-5 md:w-8 md:h-8 opacity-30 animate-float-delayed pointer-events-none z-0"
-                aria-hidden="true"
-            />
-            <img
-                src={blueDot}
-                alt=""
-                className="fixed bottom-[25%] right-[5%] w-6 h-6 md:w-9 md:h-9 opacity-35 animate-float pointer-events-none z-0"
-                aria-hidden="true"
-            />
+
 
             {/* Header */}
             <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-war-gold/20">
@@ -112,13 +86,23 @@ const HowToPlay = () => {
                                     <Settings className="w-4 h-4" />
                                     <span>Customize Your Game</span>
                                 </button>
+                                <button
+                                    onClick={() => setActiveTab('skin')}
+                                    className={`flex items-center gap-2 px-6 py-3 rounded-md font-semibold uppercase tracking-wider text-sm transition-all duration-300 ${activeTab === 'skin'
+                                        ? 'bg-gradient-to-r from-war-gold to-war-gold/80 text-background shadow-lg shadow-war-gold/20'
+                                        : 'text-muted-foreground hover:text-foreground hover:bg-war-gold/10'
+                                        }`}
+                                >
+                                    <Palette className="w-4 h-4" />
+                                    <span>Customize Skin</span>
+                                </button>
                             </div>
                         </div>
                     </div>
 
                     {/* Tutorial Sections */}
                     <div className="space-y-12">
-                        {(activeTab === 'howto' ? tutorialSections : customizationSections).map((section, index) => (
+                        {(activeTab === 'howto' ? tutorialSections : activeTab === 'customize' ? customizationSections : skinCustomizationSections).map((section, index) => (
                             <div
                                 key={`${activeTab}-${index}`}
                                 className="war-card p-6 md:p-10 overflow-hidden relative group animate-fade-up"
@@ -238,10 +222,10 @@ const HowToPlay = () => {
                                 EXTERNAL LINK
                             </h3>
                             <p className="text-muted-foreground mb-6">
-                                You are about to be redirected to an external documentation page on Google Docs.
+                                You are about to be redirected to an external documentation page{activeTab === 'howto' ? ' on Google Docs' : ' for modding'}.
                             </p>
                             <p className="text-sm text-muted-foreground/70 mb-8 break-all">
-                                {GUIDE_URL.substring(0, 50)}...
+                                {(activeTab === 'howto' ? GUIDE_URL : MODDING_URL).substring(0, 50)}...
                             </p>
 
                             {/* Buttons */}
@@ -253,7 +237,7 @@ const HowToPlay = () => {
                                     Cancel
                                 </button>
                                 <a
-                                    href={GUIDE_URL}
+                                    href={activeTab === 'howto' ? GUIDE_URL : MODDING_URL}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     onClick={() => setShowModal(false)}
