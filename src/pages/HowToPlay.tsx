@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, BookOpen, ExternalLink, Shield, Target, Crosshair, AlertTriangle, X } from 'lucide-react';
-import { tutorialSections } from '@/constants/howto';
+import { ArrowLeft, BookOpen, ExternalLink, Shield, Target, Crosshair, AlertTriangle, X, Settings, Gamepad2 } from 'lucide-react';
+import { tutorialSections, customizationSections } from '@/constants/howto';
 import redDot from '@/assets/red-dot.png';
 import blueDot from '@/assets/blue-dot.png';
+import { GUIDE_URL } from '@/constants/socials';
 
-// Guide URL
-const GUIDE_URL = 'https://docs.google.com/document/d/17dbGNQC-BPwQHfUeeI1-0o5-_Gohf6XWWTObdLhV9VA/edit?tab=t.0';
 
 const HowToPlay = () => {
     const [showModal, setShowModal] = useState(false);
+    const [activeTab, setActiveTab] = useState<'howto' | 'customize'>('howto');
 
     // Scroll to top when component mounts
     useEffect(() => {
@@ -88,13 +88,39 @@ const HowToPlay = () => {
                         </p>
                         {/* Decorative line */}
                         <div className="mt-8 mx-auto w-64 h-1 bg-gradient-to-r from-transparent via-war-gold/50 to-transparent" />
+
+                        {/* Tab Navigation */}
+                        <div className="mt-10 flex justify-center">
+                            <div className="inline-flex bg-background/60 backdrop-blur-sm border border-war-gold/30 rounded-lg p-1.5 gap-2">
+                                <button
+                                    onClick={() => setActiveTab('howto')}
+                                    className={`flex items-center gap-2 px-6 py-3 rounded-md font-semibold uppercase tracking-wider text-sm transition-all duration-300 ${activeTab === 'howto'
+                                        ? 'bg-gradient-to-r from-war-gold to-war-gold/80 text-background shadow-lg shadow-war-gold/20'
+                                        : 'text-muted-foreground hover:text-foreground hover:bg-war-gold/10'
+                                        }`}
+                                >
+                                    <Gamepad2 className="w-4 h-4" />
+                                    <span>How to Play</span>
+                                </button>
+                                <button
+                                    onClick={() => setActiveTab('customize')}
+                                    className={`flex items-center gap-2 px-6 py-3 rounded-md font-semibold uppercase tracking-wider text-sm transition-all duration-300 ${activeTab === 'customize'
+                                        ? 'bg-gradient-to-r from-war-gold to-war-gold/80 text-background shadow-lg shadow-war-gold/20'
+                                        : 'text-muted-foreground hover:text-foreground hover:bg-war-gold/10'
+                                        }`}
+                                >
+                                    <Settings className="w-4 h-4" />
+                                    <span>Customize Your Game</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                     {/* Tutorial Sections */}
                     <div className="space-y-12">
-                        {tutorialSections.map((section, index) => (
+                        {(activeTab === 'howto' ? tutorialSections : customizationSections).map((section, index) => (
                             <div
-                                key={index}
+                                key={`${activeTab}-${index}`}
                                 className="war-card p-6 md:p-10 overflow-hidden relative group animate-fade-up"
                                 style={{ animationDelay: `${index * 100}ms` }}
                             >

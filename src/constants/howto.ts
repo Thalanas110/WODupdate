@@ -31,3 +31,27 @@ export const tutorialSections = [
         image: tutorial2,
     },
 ];
+
+// Customization Guide Sections
+export const customizationSections = [
+    {
+        title: 'Game Settings',
+        content: 'Customize your match by adjusting core game settings. Choose the number of players (2-4), set starting resources, configure unit limits, and select victory conditions. Perfect your ideal battle scenario before starting!',
+        image: tutorial1, // Placeholder - replace with game settings screenshot
+    },
+    {
+        title: 'Map Options',
+        content: 'Select from a variety of maps or adjust map generation settings. Control map size, terrain distribution, water coverage, and city placement to create unique battlefields for every game.',
+        image: tutorial3, // Placeholder - replace with map settings screenshot
+    },
+    {
+        title: 'Units & Rules',
+        content: 'Fine-tune gameplay mechanics by adjusting unit stats, movement speeds, and combat modifiers. Enable or disable specific rules like fog of war, friendly fire, or special unit abilities to match your preferred playstyle.',
+        image: tutorial5, // Placeholder - replace with units/rules screenshot
+    },
+    {
+        title: 'Visual Customization',
+        content: 'Personalize your game experience with visual options. Change unit colors, adjust UI elements, toggle visual effects, and customize the game\'s appearance to your preference.',
+        image: tutorial4, // Placeholder - replace with visual settings screenshot
+    },
+];
