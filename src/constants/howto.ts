@@ -5,7 +5,7 @@ import tutorial4 from '@/assets/tutorials/tutorial4.png';
 import tutorial5 from '@/assets/tutorials/tutorial5.png';
 
 import skin1 from '@/assets/skins/skin1.png';
-import skin2 from '@/assets/skins/skin1.png';
+import skin2 from '@/assets/skins/skin2.png';
 import skin3 from '@/assets/skins/skin3.png';
 import skin4 from '@/assets/skins/skin4.png';
 
