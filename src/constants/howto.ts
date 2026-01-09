@@ -4,6 +4,11 @@ import tutorial3 from '@/assets/tutorials/tutorial3.png';
 import tutorial4 from '@/assets/tutorials/tutorial4.png';
 import tutorial5 from '@/assets/tutorials/tutorial5.png';
 
+import skin1 from '@/assets/tutorials/skin1.png';
+import skin2 from '@/assets/tutorials/skin2.png';
+import skin3 from '@/assets/tutorials/skin3.png';
+import skin4 from '@/assets/tutorials/skin4.png';
+
 export const tutorialSections = [
     {
         title: 'The Goal',
@@ -59,23 +64,23 @@ export const customizationSections = [
 // unit skin customization sections
 export const skinCustomizationSections = [
     {
-        title: 'Player Colors',
-        content: 'Placeholders only',
-        image: tutorial1,
+        title: 'Base Dot | 100% Health',
+        content: 'Create your base dot (256x256 recommended). Crop it circular, add a ring of 16–18 pixels, and save it. This will be the foundation for all other health states.',
+        image: skin1,
     },
     {
-        title: 'Unit Skins',
-        content: 'Placeholders only',
-        image: tutorial2,
+        title: 'Medium Health Orb | 50% Health',
+        content: 'Create the medium (50%) health orb using your previously saved full health orb and a broken dot reference. Clean up any visual artifacts and save as inf2_nameofskin or tank2_nameofskin.',
+        image: skin2,
     },
     {
-        title: 'Team Emblems',
-        content: 'Placeholders only',
-        image: tutorial3,
+        title: 'Low Health Orb | 25% Health',
+        content: 'Create the low (25%) health orb using a different broken dot reference. Clean up artifacts and save as inf1_nameofskin or tank1_nameofskin.',
+        image: skin3,
     },
     {
-        title: 'Animation Effects',
-        content: 'Placeholders only',
-        image: tutorial5,
+        title: 'Full Health Orb | 100% Health (Resized)',
+        content: 'Resize your full health orb to 200x200 pixels for in-game use. Save as inf_nameofskin or tank_nameofskin.',
+        image: skin4,
     },
 ];
