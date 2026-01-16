@@ -1,11 +1,7 @@
 import { useMemo } from 'react';
 
-/**
- * GrassEffect - A lightweight, CSS-only animated grass effect
- * Uses CSS animations for performance (no JS/requestAnimationFrame)
- * Positioned fixed at the bottom of the viewport
- * More populated on desktop, minimal on mobile for performance
- */
+// this is mainly lightweighht css only, for the grass.
+// Tested on mobile oon an honor x8b and never lagged.
 const GrassEffect = () => {
     // Generate grass blades with varied heights and positions
     // Use useMemo to prevent regeneration on every render
