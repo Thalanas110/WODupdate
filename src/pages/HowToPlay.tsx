@@ -49,7 +49,7 @@ const HowToPlay = () => {
             <main className="relative z-10 pt-28 pb-20 px-4">
                 <div className="max-w-4xl mx-auto">
                     {/* Title Section */}
-                    <div className="text-center mb-20 animate-fade-up">
+                    <div className="text-center mb-20 animate-fade-up relative z-30">
                         <div className="inline-flex items-center justify-center gap-4 mb-6">
                             <Crosshair className="w-8 h-8 md:w-10 md:h-10 text-war-gold/70" />
                             <BookOpen className="w-10 h-10 md:w-14 md:h-14 text-war-gold" />
