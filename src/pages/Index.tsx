@@ -8,6 +8,7 @@ import DonateSection from '@/components/DonateSection';
 import CreatorSection from '@/components/CreatorSection';
 import Footer from '@/components/Footer';
 import YoutubeSection from '@/components/YoutubeSection';
+import GrassEffect from '@/components/GrassEffect';
 
 const Index = () => {
   // Scroll to top when component mounts
@@ -25,6 +26,7 @@ const Index = () => {
       <DiscordSection />
       <DonateSection />
       <CreatorSection />
+      <GrassEffect />
       <Footer />
     </main>
   );

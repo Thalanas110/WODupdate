@@ -438,6 +438,23 @@
   animation: drift 15s ease-in-out infinite;
 }
 
+/* Grass swaying animation - minimal, performance-optimized */
+@keyframes grass-sway {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+.grass-blade {
+  animation: grass-sway 3s ease-in-out infinite;
+  will-change: transform;
+}
+
 /* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
