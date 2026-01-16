@@ -1,7 +1,7 @@
 // Countdown Timer Constants
 
-// Release date: January 17, 2026
-export const RELEASE_DATE = new Date('2026-01-17T00:00:00').getTime();
+// Release date: January 17, 2026 at midnight GMT+0 (Greenwich Mean Time)
+export const RELEASE_DATE = new Date('2026-01-17T00:00:00Z').getTime();
 
 // Steam store link
 export const STEAM_URL = 'https://store.steampowered.com/app/3902430/War_of_Dots/';
