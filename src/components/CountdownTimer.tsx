@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import FlipDigit from './FlipDigit';
 import steamLogo from '@/assets/steam logo.webp';
-import { RELEASE_DATE, STEAM_URL, calculateTimeLeft } from '@/constants/countdown';
+import { RELEASE_DATE, calculateTimeLeft } from '@/constants/countdown';
+import { STEAM_URL } from '@/constants/socials';
 
 interface TimeLeft {
   days: number;
