@@ -5,17 +5,18 @@
  */
 const GrassEffect = () => {
     // Generate grass blades with varied heights and positions
+    // Taller on desktop for better visibility
     const grassBlades = Array.from({ length: 40 }, (_, i) => ({
         id: i,
         left: `${(i / 40) * 100}%`,
-        height: 30 + Math.random() * 25, // 30-55px height
+        height: 40 + Math.random() * 35, // 40-75px height (taller for desktop)
         delay: Math.random() * 2, // Stagger animations
         duration: 2.5 + Math.random() * 1.5, // 2.5-4s duration
     }));
 
     return (
         <div
-            className="fixed bottom-0 left-0 right-0 h-16 pointer-events-none overflow-hidden"
+            className="fixed bottom-0 left-0 right-0 h-16 md:h-28 pointer-events-none overflow-hidden"
             style={{ zIndex: 50 }}
             aria-hidden="true"
         >
