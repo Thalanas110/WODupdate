@@ -1,5 +1,5 @@
 // imports have been moved to the socials.ts.
-export const RELEASE_DATE = new Date('2026-01-17T00:00:00Z').getTime();
+export const RELEASE_DATE = new Date('2026-01-01T00:00:00Z').getTime();
 let timeOffset = 0;
 let isSynced = false;
 
