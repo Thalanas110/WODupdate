@@ -23,7 +23,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 pb-20">
       {/* Background Map - Cycling Images */}
       <div className="absolute inset-0">
         {mapImages.map((img, index) => (
