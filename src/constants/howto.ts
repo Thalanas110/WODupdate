@@ -37,26 +37,26 @@ export const tutorialSections = [
     },
 ];
 
-// all of thse are currently placeholders lol
+// maps maps maps
 export const customizationSections = [
     {
-        title: 'Map Settings',
-        content: 'Placeholder only',
+        title: 'Create your own maps',
+        content: 'Bring your imagination to life by customizing your own maps. You can create entirely new battlegrounds from scratch or fine-tune existing ones to better match your strategy or scenario. The map editor is easily accessible from the top-right corner, giving you full control over layout, balance, and overall gameplay flow.',
         image: tutorial1,
     },
     {
-        title: 'Unit Settings',
-        content: 'Placeholder only',
+        title: 'Terrain Creation',
+        content: 'Shape the battlefield by adding diverse terrain elements such as mountains, forests, rivers, and plains. Terrain doesn’t just make your map visually appealing—it also influences movement, strategy, and tactical decisions. Use terrain wisely to create natural defenses, choke points, or hidden routes for clever maneuvers.',
         image: tutorial3,
     },
     {
-        title: 'Mapping itself',
-        content: 'Placeholder only',
+        title: 'Unit placement',
+        content: 'Populate your map with infantry and armored units to simulate active frontlines, ambushes, or defensive positions. Strategic unit placement allows you to recreate historical battles, design challenging scenarios, or set traps that force your opponent to think carefully before advancing.',
         image: tutorial5,
     },
     {
-        title: 'Visual Customization',
-        content: 'Placeholder only',
+        title: 'City placement',
+        content: 'Place cities across your map to represent key urban centers and strategic objectives. Cities generate funds over time, making them valuable assets worth fighting over. They can be captured by your opponent—or reclaimed by you in future matches—adding an extra layer of economic strategy and long-term planning.',
         image: tutorial4,
     },
 ];

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Crosshair, Target } from 'lucide-react';
 import redDot from '@/assets/red-dot.png';
 import blueDot from '@/assets/blue-dot.png';
@@ -9,6 +9,8 @@ import { screenshots } from '@/constants/screenshotsgp.ts';
 const GameplaySection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
 
   const goToSlide = (index: number) => {
     if (isTransitioning) return;
@@ -23,6 +25,31 @@ const GameplaySection = () => {
 
   const prevSlide = () => {
     goToSlide((currentIndex - 1 + screenshots.length) % screenshots.length);
+  };
+
+  // Touch swipe handlers for mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current === null || touchEndX.current === null) return;
+
+    const swipeDistance = touchStartX.current - touchEndX.current;
+    const minSwipeDistance = 50;
+
+    if (swipeDistance > minSwipeDistance) {
+      nextSlide();
+    } else if (swipeDistance < -minSwipeDistance) {
+      prevSlide();
+    }
+
+    touchStartX.current = null;
+    touchEndX.current = null;
   };
 
   // Auto-advance slides (pauses on interaction)
@@ -68,7 +95,12 @@ const GameplaySection = () => {
           {/* Outer glow frame */}
           <div className="absolute -inset-1 bg-gradient-to-r from-war-red/20 via-war-gold/30 to-war-blue/20 rounded-xl blur-sm opacity-60" />
 
-          <div className="war-card overflow-hidden rounded-xl relative">
+          <div
+            className="war-card overflow-hidden rounded-xl relative"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             {/* Corner decorations */}
             <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-war-gold/40 rounded-tl-xl z-10" />
             <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-war-gold/40 rounded-tr-xl z-10" />
@@ -117,8 +149,8 @@ const GameplaySection = () => {
           </div>
         </div>
 
-        {/* Thumbnail Navigation - Enhanced */}
-        <div className="flex justify-center gap-2 md:gap-3 mt-8 overflow-x-auto pb-2 px-4">
+        {/* Thumbnail Navigation - Hidden on mobile, shown on md+ */}
+        <div className="hidden md:flex justify-center gap-2 md:gap-3 mt-8 overflow-x-auto pb-2 px-4">
           {screenshots.map((screenshot, index) => (
             <button
               key={index}
@@ -141,8 +173,23 @@ const GameplaySection = () => {
           ))}
         </div>
 
-        {/* Progress bar for current slide */}
-        <div className="flex justify-center gap-1 mt-4">
+        {/* Mobile Dot Pagination - Interactive dots for mobile */}
+        <div className="flex md:hidden justify-center gap-2 mt-6">
+          {screenshots.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`rounded-full transition-all duration-300 ${index === currentIndex
+                ? 'w-3 h-3 bg-war-gold shadow-lg shadow-war-gold/30'
+                : 'w-2 h-2 bg-border/50 hover:bg-border'
+                }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* Progress bar for current slide - Desktop only */}
+        <div className="hidden md:flex justify-center gap-1 mt-4">
           {screenshots.map((_, index) => (
             <div
               key={index}
