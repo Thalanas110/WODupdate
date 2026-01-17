@@ -60,16 +60,8 @@ const CountdownTimer = () => {
   // Render Steam button when timer is expired
   if (isExpired) {
     return (
-      <div className="flex flex-col items-center gap-8">
-        {/* Announcement Badge */}
-        <div className="relative">
-          <div className="absolute -inset-1 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 rounded-lg blur-sm opacity-75 animate-pulse" />
-          <div className="relative px-6 py-2 bg-background/90 backdrop-blur-sm rounded-lg border border-amber-500/50">
-            <span className="text-lg md:text-2xl uppercase tracking-[0.3em] text-gradient-gold font-military">
-              🎮 Out Now! 🎮
-            </span>
-          </div>
-        </div>
+      <div className="flex flex-col items-center gap-5">
+
 
         {/* Steam Button - Large & Prominent */}
         <a

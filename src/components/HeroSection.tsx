@@ -23,7 +23,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-6 pb-6 md:pt-16 md:pb-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pb-20 md:pb-40">
       {/* Background Map - Cycling Images */}
       <div className="absolute inset-0">
         {mapImages.map((img, index) => (
@@ -84,13 +84,13 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center justify-center min-h-[inherit]">
         <div className="animate-fade-up">
-          <h1 className="font-military text-6xl sm:text-7xl md:text-8xl lg:text-9xl 2xl:text-[10rem] text-gradient-gold mb-2 md:mb-4 drop-shadow-2xl leading-none">
+          <h1 className="font-military text-6xl sm:text-7xl md:text-8xl lg:text-8xl xl:text-8xl 2xl:text-9xl text-gradient-gold mb-2 drop-shadow-2xl leading-none">
             WAR OF DOTS
           </h1>
-          <p className="text-base sm:text-xl md:text-2xl text-foreground/90 mb-1 md:mb-2 uppercase tracking-[0.2em]">
+          <p className="text-base sm:text-l md:text-xl text-foreground/90 mb-1 uppercase tracking-[0.2em]">
             Command. Conquer. Dominate.
           </p>
-          <p className="text-xs md:text-base text-muted-foreground max-w-2xl mx-auto mb-4 md:mb-8">
+          <p className="text-xs md:text-sm text-muted-foreground max-w-2xl mx-auto mb-4">
             A strategic multiplayer game where every move matters
           </p>
         </div>
@@ -99,7 +99,7 @@ const HeroSection = () => {
           <CountdownTimer />
         </div>
 
-        <div className="animate-fade-up delay-400 mt-4 md:mt-10 flex flex-col sm:flex-row gap-3 md:gap-4 justify-center w-full sm:w-auto">
+        <div className="animate-fade-up delay-400 mt-4 md:mt-6 flex flex-col sm:flex-row gap-3 md:gap-4 justify-center w-full sm:w-auto">
           <a
             href="#about"
             className="btn-war-gold px-8 py-3 rounded-md font-semibold uppercase tracking-wider inline-block w-full sm:w-auto text-sm md:text-base"
