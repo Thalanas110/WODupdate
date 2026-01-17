@@ -7,7 +7,7 @@ import { useState } from "react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import HowToPlay from "./pages/HowToPlay";
-import LoadingScreen from "@/components/LoadingScreen";
+import LoadingScreen from "@/components/ux/loading/loadingscreen";
 
 const queryClient = new QueryClient();
 

@@ -8,7 +8,7 @@ import DonateSection from '@/components/DonateSection';
 import CreatorSection from '@/components/CreatorSection';
 import Footer from '@/components/Footer';
 import YoutubeSection from '@/components/YoutubeSection';
-import GrassEffect from '@/components/GrassEffect';
+import GrassEffect from '@/components/ux/grass/grasseffect';
 
 const Index = () => {
   // Scroll to top when component mounts
