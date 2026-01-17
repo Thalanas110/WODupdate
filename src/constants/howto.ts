@@ -9,6 +9,11 @@ import skin2 from '@/assets/skins/skin2.png';
 import skin3 from '@/assets/skins/skin3.png';
 import skin4 from '@/assets/skins/skin4.png';
 
+import map1 from '@/assets/maps/map1.png';
+import map2 from '@/assets/maps/map2.png';
+import map3 from '@/assets/maps/map3.png';
+import map4 from '@/assets/maps/map4.png';
+
 export const tutorialSections = [
     {
         title: 'The Goal',
@@ -42,22 +47,22 @@ export const customizationSections = [
     {
         title: 'Create your own maps',
         content: 'Bring your imagination to life by customizing your own maps. You can create entirely new battlegrounds from scratch or fine-tune existing ones to better match your strategy or scenario. The map editor is easily accessible from the top-right corner, giving you full control over layout, balance, and overall gameplay flow.',
-        image: tutorial1,
+        image: map1,
     },
     {
         title: 'Terrain Creation',
         content: 'Shape the battlefield by adding diverse terrain elements such as mountains, forests, rivers, and plains. Terrain doesn’t just make your map visually appealing—it also influences movement, strategy, and tactical decisions. Use terrain wisely to create natural defenses, choke points, or hidden routes for clever maneuvers.',
-        image: tutorial3,
+        image: map2,
     },
     {
         title: 'Unit placement',
         content: 'Populate your map with infantry and armored units to simulate active frontlines, ambushes, or defensive positions. Strategic unit placement allows you to recreate historical battles, design challenging scenarios, or set traps that force your opponent to think carefully before advancing.',
-        image: tutorial5,
+        image: map3,
     },
     {
         title: 'City placement',
         content: 'Place cities across your map to represent key urban centers and strategic objectives. Cities generate funds over time, making them valuable assets worth fighting over. They can be captured by your opponent—or reclaimed by you in future matches—adding an extra layer of economic strategy and long-term planning.',
-        image: tutorial4,
+        image: map4,
     },
 ];
 
