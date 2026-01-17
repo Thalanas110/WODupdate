@@ -64,23 +64,28 @@ export const customizationSections = [
 // unit skin customization sections
 export const skinCustomizationSections = [
     {
-        title: 'Base Dot | 100% Health',
-        content: 'Create your base dot (256x256 recommended). Crop it circular, add a ring of 16–18 pixels, and save it. This will be the foundation for all other health states.',
+        title: 'Section 1: Base Dot / 100% Health',
+        content: 'This section is where you create your base dot, which will serve as the foundation for all health orb states. The base dot defines the visual style, colors, and overall clarity of your skin. Proper care here ensures that all derived orbs maintain a consistent look and feel.\n\nTips and best practices: Recommended image size is 256×256 pixels for editing. If you draw your skin yourself, it is slightly more likely to get added. Keep the circle crop centered and maintain consistent ring thickness (16–18 pixels recommended).',
         image: skin1,
     },
     {
-        title: 'Medium Health Orb | 50% Health',
-        content: 'Create the medium (50%) health orb using your previously saved full health orb and a broken dot reference. Clean up any visual artifacts and save as inf2_nameofskin or tank2_nameofskin.',
+        title: 'Section 2: Medium Health Orb (50%)',
+        content: 'In this step, you create the medium health orb, representing 50% player health. This orb is derived from the full health base dot and a broken dot reference. Proper care ensures players can easily recognize medium health visually.\n\nTips and best practices: Use a 256×256 image for editing; final resizing occurs later. Clean up any artifacts using the Eraser Tool for smooth visuals. Ensure the medium orb maintains proportions similar to the full health orb. Naming convention: inf2_nameofskin or tank2_nameofskin.',
         image: skin2,
     },
     {
-        title: 'Low Health Orb | 25% Health',
-        content: 'Create the low (25%) health orb using a different broken dot reference. Clean up artifacts and save as inf1_nameofskin or tank1_nameofskin.',
+        title: 'Section 2.1: Low Health Orb (25%)',
+        content: 'This step creates the low health orb, representing 25% player health. It uses a different broken dot reference than the medium orb to simulate damage and distinguish it visually. The low health orb should appear clearly damaged compared to other health states.\n\nTips and best practices: Recommended editing size is 256×256 pixels. Self-drawn skins are slightly more likely to be added. Ensure alignment and proportions match previous health states, and clean any visual artifacts with the Eraser Tool. Save as inf1_nameofskin or tank1_nameofskin.',
         image: skin3,
     },
     {
-        title: 'Full Health Orb | 100% Health (Resized)',
-        content: 'Resize your full health orb to 200x200 pixels for in-game use. Save as inf_nameofskin or tank_nameofskin.',
-        image: skin4,
+        title: 'Section 2.2: Final Full Health Orb (Resized)',
+        content: 'This step resizes your full health orb to the required in-game size of 200×200 pixels, ensuring proper display and visual clarity. Centering and alignment are important to prevent stretched or off-center images.\n\nTips and best practices: Keep the original 256×256 images for editing. Verify that the orb remains centered after resizing. Save as inf_nameofskin or tank_nameofskin. Self-drawn skins are slightly more likely to be added.',
+        image: skin1,
     },
+    {
+        title: 'End / Workflow Completed',
+        content: 'You have now completed the full health orb creation workflow. At this point, you should have three images representing full, medium, and low health states, all ready to be placed in the game’s skins folder.\n\nTips and best practices: Keep backups of all images. Test in-game to ensure the skins display correctly. Using self-drawn designs slightly increases the likelihood of them being added. Repeat the workflow for additional custom skins. Recommended editing size remains 256×256 pixels for clarity and consistency.',
+        image: skin4,
+    }
 ];

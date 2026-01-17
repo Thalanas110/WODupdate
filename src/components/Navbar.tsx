@@ -1,9 +1,23 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show navbar when scrolled down 80vh (past most of hero section)
+      const showThreshold = window.innerHeight * 0.8;
+      setIsVisible(window.scrollY > showThreshold);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial state
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
     { label: 'About', href: '#about' },
@@ -14,7 +28,12 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-sm border-b border-border/50">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isVisible
+          ? 'translate-y-0 opacity-100 bg-background/90 backdrop-blur-sm border-b border-border/50'
+          : '-translate-y-full opacity-0 pointer-events-none'
+        }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
