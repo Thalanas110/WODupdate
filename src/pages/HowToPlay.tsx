@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, BookOpen, ExternalLink, Shield, Target, Crosshair, AlertTriangle, X, Settings, Gamepad2, Palette, ChevronDown } from 'lucide-react';
 import { tutorialSections, customizationSections, skinCustomizationSections } from '@/constants/howto';
-import { GUIDE_URL, MODDING_URL, SKIN_URL } from '@/constants/socials';
+import { GUIDE_URL, MAP_MODDING_URL, SKIN_URL } from '@/constants/socials';
 
 
 const HowToPlay = () => {
@@ -277,7 +277,7 @@ const HowToPlay = () => {
                                 You are about to be redirected to an external documentation page{activeTab === 'howto' ? ' on Google Docs' : activeTab === 'customize' ? ' for map modding' : ' for skin modding'}.
                             </p>
                             <p className="text-sm text-muted-foreground/70 mb-8 break-all">
-                                {(activeTab === 'howto' ? GUIDE_URL : activeTab === 'customize' ? MODDING_URL : SKIN_URL).substring(0, 50)}...
+                                {(activeTab === 'howto' ? GUIDE_URL : activeTab === 'customize' ? MAP_MODDING_URL : SKIN_URL).substring(0, 50)}...
                             </p>
 
                             {/* Buttons */}
@@ -289,7 +289,7 @@ const HowToPlay = () => {
                                     Cancel
                                 </button>
                                 <a
-                                    href={activeTab === 'howto' ? GUIDE_URL : activeTab === 'customize' ? MODDING_URL : SKIN_URL}
+                                    href={activeTab === 'howto' ? GUIDE_URL : activeTab === 'customize' ? MAP_MODDING_URL : SKIN_URL}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     onClick={() => setShowModal(false)}
