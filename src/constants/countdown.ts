@@ -60,7 +60,7 @@ export const calculateTimeLeft = (targetDate: number) => {
         };
     }
     catch (error) {
-        console.error('Error calculating time left:', error);
+        console.error('time error:', error);
         return {
             days: 0,
             hours: 0,
