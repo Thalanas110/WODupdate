@@ -128,6 +128,18 @@
 
   html {
     scroll-behavior: smooth;
+    cursor: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='16' cy='16' r='14' stroke='rgba(0,0,0,0.5)' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='12' stroke='hsl(45, 80%25, 55%25)' stroke-width='1.5'/%3E%3Cpath d='M16 8V24M8 16H24' stroke='hsl(45, 80%25, 55%25)' stroke-width='1.5'/%3E%3C/svg%3E") 16 16, auto;
+  }
+
+  /* Clickable elements cursor */
+  a,
+  button,
+  [role="button"],
+  input,
+  select,
+  textarea,
+  .clickable {
+    cursor: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='16' cy='16' r='14' stroke='rgba(0,0,0,0.5)' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='12' stroke='hsl(0, 70%25, 50%25)' stroke-width='2'/%3E%3Cpath d='M16 6V26M6 16H26' stroke='hsl(0, 70%25, 50%25)' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='2' fill='hsl(0, 70%25, 50%25)'/%3E%3C/svg%3E") 16 16, pointer;
   }
 
   body {
@@ -209,19 +221,28 @@
   }
 
   .text-gradient-gold {
-    background: linear-gradient(135deg, hsl(45 95% 65%) 0%, hsl(40 85% 55%) 50%, hsl(35 80% 45%) 100%);
+    background: linear-gradient(135deg, #FFD700 0%, #FDB931 50%, #e0aa3e 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 2px 0px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 15px hsl(45 70% 50% / 0.6));
+    text-shadow: none;
+    /* Strong Shining Gold Glow: Layered shadows for intensity */
+    filter:
+      drop-shadow(0 0 2px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 10px rgba(255, 215, 0, 0.6)) drop-shadow(0 0 20px rgba(255, 215, 0, 0.4));
+    padding-bottom: 0.1em;
   }
 
   .text-gradient-blood {
-    background: linear-gradient(135deg, hsl(0 85% 60%) 0%, hsl(0 90% 45%) 100%);
+    background: linear-gradient(135deg, #ff4d4d 0%, #cc0000 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+    text-shadow: none;
+    /* Strong Blood Red Glow */
+    filter:
+      drop-shadow(0 0 2px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 10px rgba(255, 0, 0, 0.6)) drop-shadow(0 0 20px rgba(255, 0, 0, 0.4));
+    position: relative;
+    z-index: 10;
   }
 
   .text-pop {
@@ -586,5 +607,3 @@
   animation: grass-sway 3s ease-in-out infinite;
   will-change: transform;
 }
-
-/* Scrollbar styling */

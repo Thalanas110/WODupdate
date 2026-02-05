@@ -88,7 +88,7 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center justify-center min-h-[inherit]">
         <div className="animate-fade-up">
-          <h1 className="font-military text-6xl sm:text-7xl md:text-8xl lg:text-8xl xl:text-8xl 2xl:text-9xl text-gradient-gold mb-2 drop-shadow-2xl leading-none">
+          <h1 className="font-military text-6xl sm:text-7xl md:text-8xl lg:text-8xl xl:text-8xl 2xl:text-9xl text-gradient-gold mb-2 leading-none">
             WAR OF DOTS
           </h1>
           <p className="text-base sm:text-l md:text-xl text-foreground/95 mb-1 uppercase tracking-[0.2em] text-pop">
