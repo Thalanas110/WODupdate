@@ -37,6 +37,10 @@ const HeroSection = () => {
         ))}
         {/* Fog of War Overlay */}
         <div className="fog-overlay absolute inset-0" />
+        {/* Scanline Overlay */}
+        <div className="scanline absolute inset-0 opacity-20 pointer-events-none" />
+        {/* Vignette Overlay */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)] pointer-events-none" />
         {/* Dark gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-transparent to-background" />
       </div>
@@ -87,10 +91,10 @@ const HeroSection = () => {
           <h1 className="font-military text-6xl sm:text-7xl md:text-8xl lg:text-8xl xl:text-8xl 2xl:text-9xl text-gradient-gold mb-2 drop-shadow-2xl leading-none">
             WAR OF DOTS
           </h1>
-          <p className="text-base sm:text-l md:text-xl text-foreground/90 mb-1 uppercase tracking-[0.2em]">
+          <p className="text-base sm:text-l md:text-xl text-foreground/95 mb-1 uppercase tracking-[0.2em] text-pop">
             Command. Conquer. Dominate.
           </p>
-          <p className="text-xs md:text-sm text-muted-foreground max-w-2xl mx-auto mb-4">
+          <p className="text-xs md:text-sm text-muted-foreground/90 max-w-2xl mx-auto mb-4 font-medium drop-shadow-md">
             A strategic multiplayer game where every move matters
           </p>
         </div>

@@ -30,15 +30,16 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isVisible
-          ? 'translate-y-0 opacity-100 bg-background/90 backdrop-blur-sm border-b border-border/50'
-          : '-translate-y-full opacity-0 pointer-events-none'
+        ? 'translate-y-0 opacity-100 bg-background/95 backdrop-blur-md border-b border-white/10 shadow-2xl'
+        : '-translate-y-full opacity-0 pointer-events-none'
         }`}
     >
+      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-50"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2">
-            <span className="font-military text-xl md:text-2xl text-gradient-gold">
+          <a href="#" className="flex items-center gap-2 group">
+            <span className="font-military text-xl md:text-3xl text-gradient-gold tracking-widest group-hover:drop-shadow-[0_0_8px_rgba(234,179,8,0.5)] transition-all duration-300">
               WAR OF DOTS
             </span>
           </a>
