@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, BookOpen, ExternalLink, Shield, Target, Crosshair, AlertTriangle, X, Settings, Gamepad2, Palette, ChevronDown } from 'lucide-react';
+import { ArrowLeft, BookOpen, ExternalLink, Shield, Target, Crosshair, AlertTriangle, X, Settings, Gamepad2, Palette, ChevronDown, Zap, Sword, Map, Airplay } from 'lucide-react';
 import { tutorialSections, customizationSections, skinCustomizationSections } from '@/constants/howto';
 import { GUIDE_URL, MAP_MODDING_URL, SKIN_URL } from '@/constants/socials';
 
@@ -9,6 +9,7 @@ const HowToPlay = () => {
     const [showModal, setShowModal] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
     const [activeTab, setActiveTab] = useState<'howto' | 'customize' | 'skin'>('howto');
+    const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
     // Scroll to top when component mounts
     useEffect(() => {
@@ -153,79 +154,182 @@ const HowToPlay = () => {
                     </div>
 
                     {/* Tutorial Sections */}
-                    <div className="space-y-12">
-                        {(activeTab === 'howto' ? tutorialSections : activeTab === 'customize' ? customizationSections : skinCustomizationSections).map((section, index) => (
-                            <div
-                                key={`${activeTab}-${index}`}
-                                className="war-card p-6 md:p-10 overflow-hidden relative group animate-fade-up"
-                                style={{ animationDelay: `${index * 100}ms` }}
-                            >
-                                {/* Tactical corner markers */}
-                                <div className="absolute top-3 left-3 w-4 h-4 border-l-2 border-t-2 border-war-gold/40" />
-                                <div className="absolute top-3 right-3 w-4 h-4 border-r-2 border-t-2 border-war-gold/40" />
-                                <div className="absolute bottom-3 left-3 w-4 h-4 border-l-2 border-b-2 border-war-gold/40" />
-                                <div className="absolute bottom-3 right-3 w-4 h-4 border-r-2 border-b-2 border-war-gold/40" />
+                    <div className="space-y-6">
+                        {(activeTab === 'howto' ? tutorialSections : activeTab === 'customize' ? customizationSections : skinCustomizationSections).map((section, index) => {
+                            const icons = {
+                                'howto': [Target, Sword, Airplay, Zap, Shield],
+                                'customize': [Map, Zap, Shield, Target],
+                                'skin': [Palette, Palette, Palette, Palette, Palette]
+                            };
+                            const currentIcons = icons[activeTab as keyof typeof icons] || [];
+                            const IconComponent = currentIcons[index % currentIcons.length];
+                            const isExpanded = expandedIndex === index;
 
-                                {/* Section header */}
-                                <div className="flex items-center gap-4 mb-6">
-                                    <div className="relative">
-                                        <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-war-gold to-war-gold/70 flex items-center justify-center shadow-lg shadow-war-gold/20">
-                                            <span className="font-military text-lg md:text-xl text-background">{index + 1}</span>
+                            return (
+                                <div
+                                    key={`${activeTab}-${index}`}
+                                    className="animate-fade-up"
+                                    style={{ animationDelay: `${index * 75}ms` }}
+                                >
+                                    {/* Card button */}
+                                    <button
+                                        onClick={() => setExpandedIndex(isExpanded ? null : index)}
+                                        className={`w-full group relative overflow-hidden rounded-lg transition-all duration-300 ${
+                                            isExpanded
+                                                ? 'ring-2 ring-war-gold/50'
+                                                : 'hover:ring-1 hover:ring-war-gold/30'
+                                        }`}
+                                    >
+                                        {/* Background with gradient on hover */}
+                                        <div className={`absolute inset-0 transition-all duration-300 ${
+                                            isExpanded
+                                                ? 'bg-gradient-to-r from-war-gold/15 via-transparent to-transparent'
+                                                : 'bg-background/40 group-hover:bg-gradient-to-r group-hover:from-war-gold/10 group-hover:via-transparent group-hover:to-transparent'
+                                        }`} />
+                                        
+                                        {/* Border effect */}
+                                        <div className={`absolute inset-0 border rounded-lg transition-colors duration-300 ${
+                                            isExpanded
+                                                ? 'border-war-gold/40'
+                                                : 'border-border/50 group-hover:border-war-gold/20'
+                                        }`} />
+
+                                        {/* Tactical corner markers */}
+                                        <div className="absolute top-3 left-3 w-2 h-2 bg-war-gold/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                        <div className="absolute top-3 right-3 w-2 h-2 bg-war-gold/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                        <div className="absolute bottom-3 left-3 w-2 h-2 bg-war-gold/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                        <div className="absolute bottom-3 right-3 w-2 h-2 bg-war-gold/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                                        {/* Content */}
+                                        <div className="relative p-6 md:p-8 flex items-center gap-6">
+                                            {/* Icon badge */}
+                                            <div className="relative flex-shrink-0 group/icon">
+                                                <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center transition-all duration-300 ${
+                                                    isExpanded
+                                                        ? 'bg-gradient-to-br from-war-gold to-war-gold/60 shadow-lg shadow-war-gold/30'
+                                                        : 'bg-gradient-to-br from-war-gold/20 to-war-gold/10 group-hover:from-war-gold/30 group-hover:to-war-gold/20'
+                                                }`}>
+                                                    <IconComponent className={`w-8 h-8 md:w-10 md:h-10 transition-colors duration-300 ${
+                                                        isExpanded ? 'text-background' : 'text-war-gold'
+                                                    }`} />
+                                                </div>
+                                                {/* Rank number */}
+                                                <div className={`absolute -top-2 -right-2 w-8 h-8 rounded-full font-military font-bold text-sm flex items-center justify-center transition-all duration-300 ${
+                                                    isExpanded
+                                                        ? 'bg-war-gold text-background ring-2 ring-background'
+                                                        : 'bg-background border border-war-gold/30 text-war-gold/70 group-hover:text-war-gold'
+                                                }`}>
+                                                    {index + 1}
+                                                </div>
+                                            </div>
+
+                                            {/* Title and description */}
+                                            <div className="flex-grow text-left">
+                                                <h3 className={`font-military text-xl md:text-2xl transition-colors duration-300 ${
+                                                    isExpanded ? 'text-gradient-gold' : 'text-foreground group-hover:text-war-gold'
+                                                }`}>
+                                                    {section.title}
+                                                </h3>
+                                                {!isExpanded && (
+                                                    <p className="text-sm md:text-base text-muted-foreground mt-1 line-clamp-1">
+                                                        {section.content.substring(0, 60)}...
+                                                    </p>
+                                                )}
+                                            </div>
+
+                                            {/* Expand indicator */}
+                                            <div className="flex-shrink-0 hidden md:flex">
+                                                <div className={`w-8 h-8 rounded-full flex items-center justify-center bg-war-gold/10 transition-all duration-300 group-hover:bg-war-gold/20 ${
+                                                    isExpanded ? 'rotate-180 bg-war-gold/20' : ''
+                                                }`}>
+                                                    <ChevronDown className={`w-5 h-5 text-war-gold transition-transform duration-300 ${
+                                                        isExpanded ? 'rotate-180' : ''
+                                                    }`} />
+                                                </div>
+                                            </div>
                                         </div>
-                                        {/* Pulse ring */}
-                                        <div className="absolute inset-0 rounded-full border-2 border-war-gold/30 animate-pulse-slow" />
-                                    </div>
-                                    <div>
-                                        <h2 className="font-military text-2xl md:text-3xl text-gradient-gold">
-                                            {section.title}
-                                        </h2>
-                                        <div className="h-0.5 w-20 bg-gradient-to-r from-war-gold/50 to-transparent mt-1" />
-                                    </div>
-                                </div>
+                                    </button>
 
-                                {/* Content text */}
-                                <p className="text-lg md:text-xl text-foreground/90 mb-8 leading-relaxed pl-4 border-l-2 border-war-gold/30">
-                                    {section.content}
-                                </p>
+                                    {/* Expanded Content */}
+                                    {isExpanded && (
+                                        <div className="mt-3 overflow-hidden rounded-lg border border-war-gold/20 bg-background/50 backdrop-blur-sm animate-in slide-in-from-top-2 duration-300">
+                                            <div className="p-6 md:p-10 space-y-6">
+                                                {/* Content text with tactical styling */}
+                                                <div>
+                                                    <div className="flex items-start gap-4">
+                                                        <div className="flex-shrink-0 mt-1">
+                                                            <div className="w-1 h-full min-h-[100px] bg-gradient-to-b from-war-gold/50 to-transparent rounded-full" />
+                                                        </div>
+                                                        <div className="flex-grow">
+                                                            <p className="text-lg md:text-lg text-foreground/90 leading-relaxed whitespace-pre-wrap">
+                                                                {section.content}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                                {/* Tutorial Image */}
-                                <div className="relative rounded-lg overflow-hidden border-2 border-border/50 shadow-xl shadow-black/30 group-hover:border-war-gold/30 transition-colors duration-300">
-                                    {/* Image overlay effect */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent z-10 pointer-events-none" />
-                                    <img
-                                        src={section.image}
-                                        alt={section.title}
-                                        className="w-full h-auto object-contain"
-                                    />
+                                                {/* Tutorial Image */}
+                                                <div className="relative mt-8 rounded-lg overflow-hidden border border-war-gold/20 shadow-xl shadow-black/50 group/img">
+                                                    {/* Image overlay effect */}
+                                                    <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent z-10 pointer-events-none" />
+                                                    <div className="absolute inset-0 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-war-gold/10 to-transparent z-5" />
+                                                    <img
+                                                        src={section.image}
+                                                        alt={section.title}
+                                                        className="w-full h-auto object-contain transition-transform duration-300 group-hover/img:scale-105"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
 
                     {/* Questions Section */}
-                    <div className="mt-20 text-center animate-fade-up" style={{ animationDelay: '500ms' }}>
-                        <div className="war-card p-10 md:p-14 relative">
-                            {/* Corner markers */}
-                            <div className="absolute top-4 left-4 w-6 h-6 border-l-2 border-t-2 border-war-gold/50" />
-                            <div className="absolute top-4 right-4 w-6 h-6 border-r-2 border-t-2 border-war-gold/50" />
-                            <div className="absolute bottom-4 left-4 w-6 h-6 border-l-2 border-b-2 border-war-gold/50" />
-                            <div className="absolute bottom-4 right-4 w-6 h-6 border-r-2 border-b-2 border-war-gold/50" />
+                    <div className="mt-20 animate-fade-up" style={{ animationDelay: '500ms' }}>
+                        <div className="relative overflow-hidden rounded-lg">
+                            {/* Tactical grid background */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-war-gold/5 via-transparent to-war-gold/5 pointer-events-none" />
+                            <div className="absolute inset-0 border border-war-gold/20 rounded-lg pointer-events-none" />
+                            
+                            {/* Animated border glow effect */}
+                            <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-war-gold/0 via-war-gold/10 to-war-gold/0 animate-pulse opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                            <Shield className="w-12 h-12 md:w-16 md:h-16 text-war-gold mx-auto mb-6" />
-                            <h2 className="font-military text-3xl md:text-5xl text-gradient-gold mb-4">
-                                NEED INTEL?
-                            </h2>
-                            <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-md mx-auto">
-                                Access the complete tactical documentation for advanced strategies
-                            </p>
-                            <button
-                                onClick={() => setShowModal(true)}
-                                className="inline-flex items-center gap-3 btn-war-gold px-10 py-4 rounded-md font-semibold uppercase tracking-wider text-lg hover:scale-105 transition-transform duration-300"
-                            >
-                                <Target className="w-5 h-5" />
-                                <span>View Full Guide</span>
-                                <ExternalLink className="w-5 h-5" />
-                            </button>
+                            {/* Corner accents */}
+                            <div className="absolute top-0 left-0 w-16 h-16 border-l-2 border-t-2 border-war-gold/40" />
+                            <div className="absolute top-0 right-0 w-16 h-16 border-r-2 border-t-2 border-war-gold/40" />
+                            <div className="absolute bottom-0 left-0 w-16 h-16 border-l-2 border-b-2 border-war-gold/40" />
+                            <div className="absolute bottom-0 right-0 w-16 h-16 border-r-2 border-b-2 border-war-gold/40" />
+
+                            {/* Content */}
+                            <div className="relative z-10 p-10 md:p-16 text-center group">
+                                <div className="flex justify-center mb-8">
+                                    <div className="relative">
+                                        <Shield className="w-14 h-14 md:w-18 md:h-18 text-war-gold animate-bounce-slow" />
+                                        <div className="absolute inset-0 rounded-full border border-war-gold/20 animate-pulse" style={{transform: 'scale(1.5)'}} />
+                                    </div>
+                                </div>
+                                
+                                <h2 className="font-military text-3xl md:text-5xl text-gradient-gold mb-4 drop-shadow-lg">
+                                    NEED MORE INTEL?
+                                </h2>
+                                <div className="w-32 h-1 bg-gradient-to-r from-transparent via-war-gold/50 to-transparent mx-auto mb-8" />
+                                
+                                <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
+                                    Access the complete tactical documentation for advanced strategies, detailed mechanics, and expert tips from the field.
+                                </p>
+                                
+                                <button
+                                    onClick={() => setShowModal(true)}
+                                    className="inline-flex items-center gap-3 btn-war-gold px-10 py-4 rounded-md font-semibold uppercase tracking-wider text-lg hover:scale-105 hover:shadow-lg hover:shadow-war-gold/40 transition-all duration-300 group/btn"
+                                >
+                                    <Target className="w-5 h-5 group-hover/btn:rotate-45 transition-transform duration-300" />
+                                    <span>Access Full Briefing</span>
+                                    <ExternalLink className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -245,58 +349,72 @@ const HowToPlay = () => {
             {/* External Link Confirmation Modal */}
             {showModal && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-                    {/* Backdrop */}
+                    {/* Backdrop with enhanced blur */}
                     <div
-                        className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+                        className="absolute inset-0 bg-black/90 backdrop-blur-md"
                         onClick={() => setShowModal(false)}
                     />
 
                     {/* Modal */}
-                    <div className="relative war-card p-8 md:p-10 max-w-md w-full animate-fade-up">
+                    <div className="relative w-full max-w-md rounded-lg overflow-hidden animate-fade-up">
+                        {/* Glowing border */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-war-gold/30 via-war-gold/10 to-transparent pointer-events-none" />
+                        <div className="absolute inset-0 border border-war-gold/40 rounded-lg pointer-events-none" />
+                        
+                        {/* Background */}
+                        <div className="absolute inset-0 bg-background/95 backdropfilter-blur-xl pointer-events-none" />
+
                         {/* Corner markers */}
-                        <div className="absolute top-3 left-3 w-5 h-5 border-l-2 border-t-2 border-war-gold/50" />
-                        <div className="absolute top-3 right-3 w-5 h-5 border-r-2 border-t-2 border-war-gold/50" />
-                        <div className="absolute bottom-3 left-3 w-5 h-5 border-l-2 border-b-2 border-war-gold/50" />
-                        <div className="absolute bottom-3 right-3 w-5 h-5 border-r-2 border-b-2 border-war-gold/50" />
+                        <div className="absolute top-4 left-4 w-6 h-6 border-l-2 border-t-2 border-war-gold/50" />
+                        <div className="absolute top-4 right-4 w-6 h-6 border-r-2 border-t-2 border-war-gold/50" />
+                        <div className="absolute bottom-4 left-4 w-6 h-6 border-l-2 border-b-2 border-war-gold/50" />
+                        <div className="absolute bottom-4 right-4 w-6 h-6 border-r-2 border-b-2 border-war-gold/50" />
 
                         {/* Close button */}
                         <button
                             onClick={() => setShowModal(false)}
-                            className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
+                            className="absolute top-5 right-5 z-20 text-muted-foreground hover:text-war-gold transition-colors duration-200 p-2 hover:bg-war-gold/10 rounded-lg"
                         >
-                            <X className="w-5 h-5" />
+                            <X className="w-6 h-6" />
                         </button>
 
                         {/* Content */}
-                        <div className="text-center">
-                            <AlertTriangle className="w-14 h-14 text-war-gold mx-auto mb-4" />
-                            <h3 className="font-military text-2xl md:text-3xl text-gradient-gold mb-3">
-                                EXTERNAL LINK
+                        <div className="relative z-10 p-8 md:p-10 text-center">
+                            <div className="mb-6 flex justify-center">
+                                <AlertTriangle className="w-16 h-16 text-war-gold animate-bounce-slow" />
+                            </div>
+                            
+                            <h3 className="font-military text-2xl md:text-3xl text-gradient-gold mb-4">
+                                EXTERNAL TRANSMISSION
                             </h3>
-                            <p className="text-muted-foreground mb-6">
-                                You are about to be redirected to an external documentation page{activeTab === 'howto' ? ' on Google Docs' : activeTab === 'customize' ? ' for map modding' : ' for skin modding'}.
+                            
+                            <div className="w-20 h-1 bg-gradient-to-r from-transparent via-war-gold/50 to-transparent mx-auto mb-6" />
+                            
+                            <p className="text-foreground/90 mb-4 text-base md:text-lg">
+                                You are about to be redirected to an external documentation resource{activeTab === 'howto' ? ' on Google Docs' : activeTab === 'customize' ? ' for map modding guidance' : ' for skin modding reference'}.
                             </p>
-                            <p className="text-sm text-muted-foreground/70 mb-8 break-all">
-                                {(activeTab === 'howto' ? GUIDE_URL : activeTab === 'customize' ? MAP_MODDING_URL : SKIN_URL).substring(0, 50)}...
+                            
+                            <p className="text-sm text-muted-foreground/70 mb-8 break-all font-mono bg-background/50 p-4 rounded border border-war-gold/20">
+                                {(activeTab === 'howto' ? GUIDE_URL : activeTab === 'customize' ? MAP_MODDING_URL : SKIN_URL)}
                             </p>
 
                             {/* Buttons */}
-                            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <button
                                     onClick={() => setShowModal(false)}
-                                    className="btn-war px-6 py-3 rounded-md font-semibold uppercase tracking-wider text-foreground"
+                                    className="btn-war px-8 py-3 rounded-md font-semibold uppercase tracking-wider text-foreground hover:bg-war-gold/20 hover:border-war-gold/50 transition-all duration-300"
                                 >
-                                    Cancel
+                                    Abort
                                 </button>
                                 <a
                                     href={activeTab === 'howto' ? GUIDE_URL : activeTab === 'customize' ? MAP_MODDING_URL : SKIN_URL}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     onClick={() => setShowModal(false)}
-                                    className="inline-flex items-center justify-center gap-2 btn-war-gold px-6 py-3 rounded-md font-semibold uppercase tracking-wider"
+                                    className="inline-flex items-center justify-center gap-2 btn-war-gold px-8 py-3 rounded-md font-semibold uppercase tracking-wider hover:scale-105 hover:shadow-lg hover:shadow-war-gold/40 transition-all duration-300 group"
                                 >
-                                    <span>Proceed</span>
-                                    <ExternalLink className="w-4 h-4" />
+                                    <span>Launch</span>
+                                    <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                                 </a>
                             </div>
                         </div>

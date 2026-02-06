@@ -478,6 +478,10 @@
     animation: pulse-slow 3s ease-in-out infinite;
   }
 
+  .animate-bounce-slow {
+    animation: bounce-slow 2s ease-in-out infinite;
+  }
+
   .animate-fade-up {
     animation: fade-up 0.8s ease-out forwards;
   }
@@ -606,4 +610,15 @@
 .grass-blade {
   animation: grass-sway 3s ease-in-out infinite;
   will-change: transform;
+}
+
+@keyframes bounce-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
 }
