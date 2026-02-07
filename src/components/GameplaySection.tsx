@@ -1,62 +1,22 @@
-import { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, ChevronRight, Crosshair, Target } from 'lucide-react';
+import { Crosshair, Target } from 'lucide-react';
 import redDot from '@/assets/red-dot.png';
 import blueDot from '@/assets/blue-dot.png';
-import { screenshots } from '@/constants/screenshotsgp.ts';
-
-
+import { useCarousel } from './gameplay/useCarousel';
+import Carousel from './gameplay/Carousel';
+import CarouselControls from './gameplay/CarouselControls';
+import ThumbnailNavigation from './gameplay/ThumbnailNavigation';
+import ProgressBar from './gameplay/ProgressBar';
 
 const GameplaySection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const touchStartX = useRef<number | null>(null);
-  const touchEndX = useRef<number | null>(null);
-
-  const goToSlide = (index: number) => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setCurrentIndex(index);
-    setTimeout(() => setIsTransitioning(false), 500);
-  };
-
-  const nextSlide = () => {
-    goToSlide((currentIndex + 1) % screenshots.length);
-  };
-
-  const prevSlide = () => {
-    goToSlide((currentIndex - 1 + screenshots.length) % screenshots.length);
-  };
-
-  // Touch swipe handlers for mobile
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    touchEndX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = () => {
-    if (touchStartX.current === null || touchEndX.current === null) return;
-
-    const swipeDistance = touchStartX.current - touchEndX.current;
-    const minSwipeDistance = 50;
-
-    if (swipeDistance > minSwipeDistance) {
-      nextSlide();
-    } else if (swipeDistance < -minSwipeDistance) {
-      prevSlide();
-    }
-
-    touchStartX.current = null;
-    touchEndX.current = null;
-  };
-
-  // Auto-advance slides (pauses on interaction)
-  useEffect(() => {
-    const interval = setInterval(nextSlide, 6000);
-    return () => clearInterval(interval);
-  }, [currentIndex]);
+  const {
+    currentIndex,
+    nextSlide,
+    prevSlide,
+    goToSlide,
+    handleTouchStart,
+    handleTouchMove,
+    handleTouchEnd
+  } = useCarousel();
 
   return (
     <section id="gameplay" className="py-20 md:py-32 px-4 relative overflow-hidden">
@@ -91,115 +51,25 @@ const GameplaySection = () => {
         </div>
 
         {/* Main Carousel */}
-        <div className="relative group">
-          {/* Outer glow frame */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-war-red/20 via-war-gold/30 to-war-blue/20 rounded-xl blur-sm opacity-60" />
+        <Carousel
+          currentIndex={currentIndex}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          <CarouselControls
+            onNext={nextSlide}
+            onPrev={prevSlide}
+            currentIndex={currentIndex}
+          />
+        </Carousel>
 
-          <div
-            className="war-card overflow-hidden rounded-xl relative"
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-          >
-            {/* Corner decorations */}
-            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-war-gold/40 rounded-tl-xl z-10" />
-            <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-war-gold/40 rounded-tr-xl z-10" />
-            <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-war-gold/40 rounded-bl-xl z-10" />
-            <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-war-gold/40 rounded-br-xl z-10" />
+        <ThumbnailNavigation
+          currentIndex={currentIndex}
+          onSelect={goToSlide}
+        />
 
-            <div className="relative aspect-video overflow-hidden">
-              {screenshots.map((screenshot, index) => (
-                <img
-                  key={index}
-                  src={screenshot.src}
-                  alt={screenshot.alt}
-                  className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${index === currentIndex
-                    ? 'opacity-100 scale-100'
-                    : 'opacity-0 scale-105'
-                    }`}
-                  loading="lazy"
-                />
-              ))}
-              {/* Vignette overlay */}
-              <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,transparent_50%,rgba(0,0,0,0.4)_100%)]" />
-              {/* Scan line effect - CSS only */}
-              <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,0.3)_2px,rgba(0,0,0,0.3)_4px)]" />
-            </div>
-          </div>
-
-          {/* Navigation Arrows with enhanced styling */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-2 md:-left-5 top-1/2 -translate-y-1/2 p-2 md:p-3 bg-war-darker/90 hover:bg-war-dark rounded-full border border-war-gold/30 transition-all duration-300 hover:scale-110 hover:border-war-gold/60 group-hover:opacity-100 md:opacity-0 shadow-lg shadow-black/30"
-            aria-label="Previous image"
-          >
-            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-war-gold" />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="absolute right-2 md:-right-5 top-1/2 -translate-y-1/2 p-2 md:p-3 bg-war-darker/90 hover:bg-war-dark rounded-full border border-war-gold/30 transition-all duration-300 hover:scale-110 hover:border-war-gold/60 group-hover:opacity-100 md:opacity-0 shadow-lg shadow-black/30"
-            aria-label="Next image"
-          >
-            <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-war-gold" />
-          </button>
-
-          {/* Slide counter badge */}
-          <div className="absolute bottom-4 right-4 px-3 py-1 bg-war-darker/80 rounded-full border border-war-gold/30 text-xs text-war-gold font-mono z-10">
-            {currentIndex + 1} / {screenshots.length}
-          </div>
-        </div>
-
-        {/* Thumbnail Navigation - Hidden on mobile, shown on md+ */}
-        <div className="hidden md:flex justify-center gap-2 md:gap-3 mt-8 overflow-x-auto pb-2 px-4">
-          {screenshots.map((screenshot, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`flex-shrink-0 w-16 h-10 md:w-24 md:h-14 rounded-md overflow-hidden border-2 transition-all duration-300 relative ${index === currentIndex
-                ? 'border-war-gold scale-110 shadow-lg shadow-war-gold/20'
-                : 'border-border/30 opacity-50 hover:opacity-100 hover:border-border'
-                }`}
-            >
-              <img
-                src={screenshot.src}
-                alt={`Thumbnail ${index + 1}`}
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-              {index === currentIndex && (
-                <div className="absolute inset-0 bg-war-gold/10" />
-              )}
-            </button>
-          ))}
-        </div>
-
-        {/* Mobile Dot Pagination - Interactive dots for mobile */}
-        <div className="flex md:hidden justify-center gap-2 mt-6">
-          {screenshots.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`rounded-full transition-all duration-300 ${index === currentIndex
-                ? 'w-3 h-3 bg-war-gold shadow-lg shadow-war-gold/30'
-                : 'w-2 h-2 bg-border/50 hover:bg-border'
-                }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
-
-        {/* Progress bar for current slide - Desktop only */}
-        <div className="hidden md:flex justify-center gap-1 mt-4">
-          {screenshots.map((_, index) => (
-            <div
-              key={index}
-              className={`h-0.5 rounded-full transition-all duration-300 ${index === currentIndex
-                ? 'w-8 bg-war-gold'
-                : 'w-2 bg-border/50'
-                }`}
-            />
-          ))}
-        </div>
+        <ProgressBar currentIndex={currentIndex} />
       </div>
     </section>
   );
