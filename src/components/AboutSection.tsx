@@ -1,30 +1,12 @@
-import { Link } from 'react-router-dom';
-import redDot from '@/assets/red-dot.png';
-import blueDot from '@/assets/blue-dot.png';
-
-// features
 import { features } from '@/constants/aboutpage';
-import { Shield, BookOpen } from 'lucide-react';
+import FeatureCard from './about/FeatureCard';
+import CTASection from './about/CTASection';
+import BackgroundEffects from './about/BackgroundEffects';
 
 const AboutSection = () => {
   return (
     <section id="about" className="relative py-20 md:py-32 px-4 bg-secondary/30 overflow-hidden">
-      <div className="section-divider absolute top-0 left-0 right-0" />
-
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-[10%] w-48 h-48 bg-war-red/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-[10%] w-48 h-48 bg-war-blue/5 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-war-gold/3 rounded-full blur-3xl" />
-      </div>
-
-      {/* Corner decorations */}
-      <div className="absolute top-12 left-8 text-war-gold/10 hidden md:block">
-        <Shield className="w-12 h-12" />
-      </div>
-      <div className="absolute top-12 right-8 text-war-gold/10 hidden md:block rotate-12">
-        <Shield className="w-12 h-12" />
-      </div>
+      <BackgroundEffects />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-16">
@@ -43,77 +25,11 @@ const AboutSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {features.map((feature, index) => (
-            <div
-              key={feature.title}
-              className="animate-float"
-              style={{ animationDelay: `${index * 0.5}s` }}
-            >
-              <div
-                className="war-card p-6 md:p-8 group hover:scale-[1.02] transition-all duration-300 relative h-full"
-              >
-                {/* Card corner accent */}
-                <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-war-gold/20 rounded-tl-lg" />
-                <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-war-gold/20 rounded-br-lg" />
-
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-accent/10 border border-accent/30 group-hover:bg-accent/20 group-hover:border-accent/50 transition-all duration-300">
-                    <feature.icon className="w-6 h-6 text-accent" />
-                  </div>
-                  <div>
-                    <h3 className="font-military text-xl md:text-2xl text-primary mb-2">
-                      {feature.title}
-                    </h3>
-                    <p className="text-muted-foreground">
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <FeatureCard key={feature.title} feature={feature} index={index} />
           ))}
         </div>
 
-        {/* Call to action with dots */}
-        <div className="text-center mt-16">
-          <p className="font-military text-xl md:text-2xl text-gradient-blood">
-            Think you can rise above the chaos and outsmart the rest?
-          </p>
-          <p className="text-lg text-muted-foreground mt-2">
-            The battle's waiting.
-          </p>
-
-          {/* How to Play Button - positioned between text and dots */}
-          <div className="mt-8 mb-10">
-            <Link
-              to="/how-to-play"
-              className="inline-flex items-center gap-3 btn-war-gold px-8 py-3 rounded-md font-semibold uppercase tracking-wider hover:scale-105 transition-transform duration-300"
-            >
-              <BookOpen className="w-5 h-5" />
-              How to Play
-            </Link>
-          </div>
-
-          {/* Red and Blue dots display - visual finale */}
-          <div className="flex items-center justify-center gap-6 md:gap-10">
-            <div className="relative group">
-              <div className="absolute inset-0 bg-war-blue/30 rounded-full blur-xl scale-110 group-hover:scale-125 transition-transform duration-500" />
-              <img
-                src={blueDot}
-                alt="Blue Team"
-                className="w-20 h-20 md:w-28 md:h-28 relative z-10 drop-shadow-[0_0_15px_rgba(50,100,200,0.5)] hover:scale-110 transition-transform duration-300"
-              />
-            </div>
-            <span className="text-war-gold/60 font-military text-2xl md:text-3xl">VS</span>
-            <div className="relative group">
-              <div className="absolute inset-0 bg-war-red/30 rounded-full blur-xl scale-110 group-hover:scale-125 transition-transform duration-500" />
-              <img
-                src={redDot}
-                alt="Red Team"
-                className="w-20 h-20 md:w-28 md:h-28 relative z-10 drop-shadow-[0_0_15px_rgba(200,50,50,0.5)] hover:scale-110 transition-transform duration-300"
-              />
-            </div>
-          </div>
-        </div>
+        <CTASection />
       </div>
 
       <div className="section-divider absolute bottom-0 left-0 right-0" />
