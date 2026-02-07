@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, BookOpen, ExternalLink, Shield, Target, Crosshair, AlertTriangle, X, Settings, Gamepad2, Palette, ChevronDown, Zap, Sword, Map, Airplay } from 'lucide-react';
 import { tutorialSections, customizationSections, skinCustomizationSections } from '@/constants/howto';
 import { GUIDE_URL, MAP_MODDING_URL, SKIN_URL } from '@/constants/socials';
+import GrassEffect from '@/components/ux/grass/grasseffect';
 
 
 const HowToPlay = () => {
@@ -99,7 +100,7 @@ const HowToPlay = () => {
                                                 <button
                                                     key={tab.id}
                                                     onClick={() => {
-                                                        setActiveTab(tab.id as any);
+                                                        setActiveTab(tab.id as 'howto' | 'customize' | 'skin');
                                                         setShowDropdown(false);
                                                     }}
                                                     className={`w-full flex items-center gap-3 px-4 py-3 rounded-md font-medium uppercase tracking-wider text-sm transition-all duration-200
@@ -421,6 +422,8 @@ const HowToPlay = () => {
                     </div>
                 </div>
             )}
+
+            <GrassEffect />
         </div>
     );
 };
