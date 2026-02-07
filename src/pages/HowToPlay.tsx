@@ -52,8 +52,9 @@ const HowToPlay = () => {
                 <div className="max-w-4xl mx-auto">
                     {/* Title Section */}
                     <div className="text-center mb-20 animate-fade-up relative z-30">
-                        <div className="inline-flex items-center justify-center gap-4 mb-6">
+                        <div className="flex items-center justify-center gap-4 mb-6">
                             <Crosshair className="w-8 h-8 md:w-10 md:h-10 text-war-gold/70" />
+
                             <BookOpen className="w-10 h-10 md:w-14 md:h-14 text-war-gold" />
                             <Crosshair className="w-8 h-8 md:w-10 md:h-10 text-war-gold/70" />
                         </div>
@@ -177,20 +178,20 @@ const HowToPlay = () => {
                                     <button
                                         onClick={() => setExpandedIndex(isExpanded ? null : index)}
                                         className={`w-full group relative overflow-hidden rounded-lg transition-all duration-300 ${isExpanded
-                                                ? 'ring-2 ring-war-gold/50'
-                                                : 'hover:ring-1 hover:ring-war-gold/30'
+                                            ? 'ring-2 ring-war-gold/50'
+                                            : 'hover:ring-1 hover:ring-war-gold/30'
                                             }`}
                                     >
                                         {/* Background with gradient on hover */}
                                         <div className={`absolute inset-0 transition-all duration-300 ${isExpanded
-                                                ? 'bg-gradient-to-r from-war-gold/15 via-transparent to-transparent'
-                                                : 'bg-background/40 group-hover:bg-gradient-to-r group-hover:from-war-gold/10 group-hover:via-transparent group-hover:to-transparent'
+                                            ? 'bg-gradient-to-r from-war-gold/15 via-transparent to-transparent'
+                                            : 'bg-background/40 group-hover:bg-gradient-to-r group-hover:from-war-gold/10 group-hover:via-transparent group-hover:to-transparent'
                                             }`} />
 
                                         {/* Border effect */}
                                         <div className={`absolute inset-0 border rounded-lg transition-colors duration-300 ${isExpanded
-                                                ? 'border-war-gold/40'
-                                                : 'border-border/50 group-hover:border-war-gold/20'
+                                            ? 'border-war-gold/40'
+                                            : 'border-border/50 group-hover:border-war-gold/20'
                                             }`} />
 
                                         {/* Tactical corner markers */}
@@ -204,16 +205,16 @@ const HowToPlay = () => {
                                             {/* Icon badge */}
                                             <div className="relative flex-shrink-0 group/icon">
                                                 <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center transition-all duration-300 ${isExpanded
-                                                        ? 'bg-gradient-to-br from-war-gold to-war-gold/60 shadow-lg shadow-war-gold/30'
-                                                        : 'bg-gradient-to-br from-war-gold/20 to-war-gold/10 group-hover:from-war-gold/30 group-hover:to-war-gold/20'
+                                                    ? 'bg-gradient-to-br from-war-gold to-war-gold/60 shadow-lg shadow-war-gold/30'
+                                                    : 'bg-gradient-to-br from-war-gold/20 to-war-gold/10 group-hover:from-war-gold/30 group-hover:to-war-gold/20'
                                                     }`}>
                                                     <IconComponent className={`w-8 h-8 md:w-10 md:h-10 transition-colors duration-300 ${isExpanded ? 'text-background' : 'text-war-gold'
                                                         }`} />
                                                 </div>
                                                 {/* Rank number */}
                                                 <div className={`absolute -top-2 -right-2 w-8 h-8 rounded-full font-military font-bold text-sm flex items-center justify-center transition-all duration-300 ${isExpanded
-                                                        ? 'bg-war-gold text-background ring-2 ring-background'
-                                                        : 'bg-background border border-war-gold/30 text-war-gold/70 group-hover:text-war-gold'
+                                                    ? 'bg-war-gold text-background ring-2 ring-background'
+                                                    : 'bg-background border border-war-gold/30 text-war-gold/70 group-hover:text-war-gold'
                                                     }`}>
                                                     {index + 1}
                                                 </div>
