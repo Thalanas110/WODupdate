@@ -57,7 +57,7 @@ const HowToPlay = () => {
                             <BookOpen className="w-10 h-10 md:w-14 md:h-14 text-war-gold" />
                             <Crosshair className="w-8 h-8 md:w-10 md:h-10 text-war-gold/70" />
                         </div>
-                        <h1 className="font-military text-5xl md:text-7xl text-gradient-gold mb-4 drop-shadow-lg">
+                        <h1 className="font-military text-5xl md:text-7xl text-gradient-gold mb-4 drop-shadow-lg glitch-effect" data-text="FIELD MANUAL">
                             FIELD MANUAL
                         </h1>
                         <p className="text-lg md:text-xl text-muted-foreground uppercase tracking-[0.2em]">
@@ -169,31 +169,29 @@ const HowToPlay = () => {
                             return (
                                 <div
                                     key={`${activeTab}-${index}`}
-                                    className="animate-fade-up"
-                                    style={{ animationDelay: `${index * 75}ms` }}
+                                    className={`animate-fade-up ${index % 2 === 0 ? 'animate-slide-in-left' : 'animate-slide-in-right'
+                                        }`}
+                                    style={{ animationDelay: `${index * 100}ms` }}
                                 >
                                     {/* Card button */}
                                     <button
                                         onClick={() => setExpandedIndex(isExpanded ? null : index)}
-                                        className={`w-full group relative overflow-hidden rounded-lg transition-all duration-300 ${
-                                            isExpanded
+                                        className={`w-full group relative overflow-hidden rounded-lg transition-all duration-300 ${isExpanded
                                                 ? 'ring-2 ring-war-gold/50'
                                                 : 'hover:ring-1 hover:ring-war-gold/30'
-                                        }`}
+                                            }`}
                                     >
                                         {/* Background with gradient on hover */}
-                                        <div className={`absolute inset-0 transition-all duration-300 ${
-                                            isExpanded
+                                        <div className={`absolute inset-0 transition-all duration-300 ${isExpanded
                                                 ? 'bg-gradient-to-r from-war-gold/15 via-transparent to-transparent'
                                                 : 'bg-background/40 group-hover:bg-gradient-to-r group-hover:from-war-gold/10 group-hover:via-transparent group-hover:to-transparent'
-                                        }`} />
-                                        
+                                            }`} />
+
                                         {/* Border effect */}
-                                        <div className={`absolute inset-0 border rounded-lg transition-colors duration-300 ${
-                                            isExpanded
+                                        <div className={`absolute inset-0 border rounded-lg transition-colors duration-300 ${isExpanded
                                                 ? 'border-war-gold/40'
                                                 : 'border-border/50 group-hover:border-war-gold/20'
-                                        }`} />
+                                            }`} />
 
                                         {/* Tactical corner markers */}
                                         <div className="absolute top-3 left-3 w-2 h-2 bg-war-gold/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -205,30 +203,26 @@ const HowToPlay = () => {
                                         <div className="relative p-6 md:p-8 flex items-center gap-6">
                                             {/* Icon badge */}
                                             <div className="relative flex-shrink-0 group/icon">
-                                                <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center transition-all duration-300 ${
-                                                    isExpanded
+                                                <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center transition-all duration-300 ${isExpanded
                                                         ? 'bg-gradient-to-br from-war-gold to-war-gold/60 shadow-lg shadow-war-gold/30'
                                                         : 'bg-gradient-to-br from-war-gold/20 to-war-gold/10 group-hover:from-war-gold/30 group-hover:to-war-gold/20'
-                                                }`}>
-                                                    <IconComponent className={`w-8 h-8 md:w-10 md:h-10 transition-colors duration-300 ${
-                                                        isExpanded ? 'text-background' : 'text-war-gold'
-                                                    }`} />
+                                                    }`}>
+                                                    <IconComponent className={`w-8 h-8 md:w-10 md:h-10 transition-colors duration-300 ${isExpanded ? 'text-background' : 'text-war-gold'
+                                                        }`} />
                                                 </div>
                                                 {/* Rank number */}
-                                                <div className={`absolute -top-2 -right-2 w-8 h-8 rounded-full font-military font-bold text-sm flex items-center justify-center transition-all duration-300 ${
-                                                    isExpanded
+                                                <div className={`absolute -top-2 -right-2 w-8 h-8 rounded-full font-military font-bold text-sm flex items-center justify-center transition-all duration-300 ${isExpanded
                                                         ? 'bg-war-gold text-background ring-2 ring-background'
                                                         : 'bg-background border border-war-gold/30 text-war-gold/70 group-hover:text-war-gold'
-                                                }`}>
+                                                    }`}>
                                                     {index + 1}
                                                 </div>
                                             </div>
 
                                             {/* Title and description */}
                                             <div className="flex-grow text-left">
-                                                <h3 className={`font-military text-xl md:text-2xl transition-colors duration-300 ${
-                                                    isExpanded ? 'text-gradient-gold' : 'text-foreground group-hover:text-war-gold'
-                                                }`}>
+                                                <h3 className={`font-military text-xl md:text-2xl transition-colors duration-300 ${isExpanded ? 'text-gradient-gold' : 'text-foreground group-hover:text-war-gold'
+                                                    }`}>
                                                     {section.title}
                                                 </h3>
                                                 {!isExpanded && (
@@ -240,20 +234,22 @@ const HowToPlay = () => {
 
                                             {/* Expand indicator */}
                                             <div className="flex-shrink-0 hidden md:flex">
-                                                <div className={`w-8 h-8 rounded-full flex items-center justify-center bg-war-gold/10 transition-all duration-300 group-hover:bg-war-gold/20 ${
-                                                    isExpanded ? 'rotate-180 bg-war-gold/20' : ''
-                                                }`}>
-                                                    <ChevronDown className={`w-5 h-5 text-war-gold transition-transform duration-300 ${
-                                                        isExpanded ? 'rotate-180' : ''
-                                                    }`} />
+                                                <div className={`w-8 h-8 rounded-full flex items-center justify-center bg-war-gold/10 transition-all duration-300 group-hover:bg-war-gold/20 ${isExpanded ? 'rotate-180 bg-war-gold/20' : ''
+                                                    }`}>
+                                                    <ChevronDown className={`w-5 h-5 text-war-gold transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''
+                                                        }`} />
                                                 </div>
                                             </div>
                                         </div>
+                                        {/* Shimmer Effect on Hover */}
+                                        <div className="shimmer-effect opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                     </button>
 
                                     {/* Expanded Content */}
                                     {isExpanded && (
-                                        <div className="mt-3 overflow-hidden rounded-lg border border-war-gold/20 bg-background/50 backdrop-blur-sm animate-in slide-in-from-top-2 duration-300">
+                                        <div className="mt-3 overflow-hidden rounded-lg border border-war-gold/20 bg-background/50 backdrop-blur-sm animate-in slide-in-from-top-2 duration-300 relative">
+                                            {/* Scan Line Effect */}
+                                            <div className="scan-line" />
                                             <div className="p-6 md:p-10 space-y-6">
                                                 {/* Content text with tactical styling */}
                                                 <div>
@@ -294,7 +290,7 @@ const HowToPlay = () => {
                             {/* Tactical grid background */}
                             <div className="absolute inset-0 bg-gradient-to-br from-war-gold/5 via-transparent to-war-gold/5 pointer-events-none" />
                             <div className="absolute inset-0 border border-war-gold/20 rounded-lg pointer-events-none" />
-                            
+
                             {/* Animated border glow effect */}
                             <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-war-gold/0 via-war-gold/10 to-war-gold/0 animate-pulse opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
@@ -309,19 +305,19 @@ const HowToPlay = () => {
                                 <div className="flex justify-center mb-8">
                                     <div className="relative">
                                         <Shield className="w-14 h-14 md:w-18 md:h-18 text-war-gold animate-bounce-slow" />
-                                        <div className="absolute inset-0 rounded-full border border-war-gold/20 animate-pulse" style={{transform: 'scale(1.5)'}} />
+                                        <div className="absolute inset-0 rounded-full border border-war-gold/20 animate-pulse" style={{ transform: 'scale(1.5)' }} />
                                     </div>
                                 </div>
-                                
+
                                 <h2 className="font-military text-3xl md:text-5xl text-gradient-gold mb-4 drop-shadow-lg">
                                     NEED MORE INTEL?
                                 </h2>
                                 <div className="w-32 h-1 bg-gradient-to-r from-transparent via-war-gold/50 to-transparent mx-auto mb-8" />
-                                
+
                                 <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
                                     Access the complete tactical documentation for advanced strategies, detailed mechanics, and expert tips from the field.
                                 </p>
-                                
+
                                 <button
                                     onClick={() => setShowModal(true)}
                                     className="inline-flex items-center gap-3 btn-war-gold px-10 py-4 rounded-md font-semibold uppercase tracking-wider text-lg hover:scale-105 hover:shadow-lg hover:shadow-war-gold/40 transition-all duration-300 group/btn"
@@ -361,7 +357,7 @@ const HowToPlay = () => {
                         {/* Glowing border */}
                         <div className="absolute inset-0 bg-gradient-to-br from-war-gold/30 via-war-gold/10 to-transparent pointer-events-none" />
                         <div className="absolute inset-0 border border-war-gold/40 rounded-lg pointer-events-none" />
-                        
+
                         {/* Background */}
                         <div className="absolute inset-0 bg-background/95 backdropfilter-blur-xl pointer-events-none" />
 
@@ -384,17 +380,17 @@ const HowToPlay = () => {
                             <div className="mb-6 flex justify-center">
                                 <AlertTriangle className="w-16 h-16 text-war-gold animate-bounce-slow" />
                             </div>
-                            
+
                             <h3 className="font-military text-2xl md:text-3xl text-gradient-gold mb-4">
                                 EXTERNAL TRANSMISSION
                             </h3>
-                            
+
                             <div className="w-20 h-1 bg-gradient-to-r from-transparent via-war-gold/50 to-transparent mx-auto mb-6" />
-                            
+
                             <p className="text-foreground/90 mb-4 text-base md:text-lg">
                                 You are about to be redirected to an external documentation resource{activeTab === 'howto' ? ' on Google Docs' : activeTab === 'customize' ? ' for map modding guidance' : ' for skin modding reference'}.
                             </p>
-                            
+
                             <p className="text-sm text-muted-foreground/70 mb-8 break-all font-mono bg-background/50 p-4 rounded border border-war-gold/20">
                                 {(activeTab === 'howto' ? GUIDE_URL : activeTab === 'customize' ? MAP_MODDING_URL : SKIN_URL)}
                             </p>
