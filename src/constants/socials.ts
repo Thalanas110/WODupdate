@@ -1,7 +1,7 @@
 // social media
 export const DISCORD_URL = 'https://discord.gg/warofdots';
 export const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@TeaAndPython';
-export const YOUTUBE_FEATURED_VIDEO_URL = 'https://youtu.be/bsUL9PjzGMw?si=mJIjafh3FxYjFjoq';
+export const YOUTUBE_FEATURED_VIDEO_URL = 'https://www.youtube.com/embed/bsUL9PjzGMw?si=SuzQuSoYRgCrl-fw';
 export const BUY_ME_COFFEE_URL = 'https://buymeacoffee.com/pythonic_tea';
 
 // guide urls   
@@ -11,3 +11,6 @@ export const SKIN_URL = "https://github.com/PixelG-t/wodskin/blob/main/HOWTO.md"
 
 // steam link
 export const STEAM_URL = 'https://store.steampowered.com/app/3902430/War_of_Dots/';
+
+
+// <iframe width="560" height="315" src="https://www.youtube.com/embed/bsUL9PjzGMw?si=SuzQuSoYRgCrl-fw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
