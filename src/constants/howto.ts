@@ -94,5 +94,4 @@ export const skinCustomizationSections = [
         content: 'You have now completed the full health orb creation workflow. At this point, you should have three images representing full, medium, and low health states, all ready to be placed in the game’s skins folder.\n\nTips and best practices: Keep backups of all images. Test in-game to ensure the skins display correctly. Using self-drawn designs slightly increases the likelihood of them being added. Repeat the workflow for additional custom skins. Recommended editing size remains 128x128 pixels for clarity and consistency.',
         image: tutorial5,
     }
-];}
 ];
