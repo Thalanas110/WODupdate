@@ -72,26 +72,26 @@ export const skinCustomizationSections = [
     {
         title: 'Section 1: Base Dot / 100% Health',
         content: 'This section is where you create your base dot, which will serve as the foundation for all health orb states. The base dot defines the visual style, colors, and overall clarity of your skin. Proper care here ensures that all derived orbs maintain a consistent look and feel.\n\nTips and best practices: Recommended image size is 128x128 pixels for editing. If you draw your skin yourself, it is slightly more likely to get added. Keep the circle crop centered and maintain consistent ring thickness (4-8 pixels recommended).',
-        image: tutorial1,
+        image: skin1,
     },
     {
         title: 'Section 2: Medium Health Orb (50%)',
         content: 'In this step, you create the medium health orb, representing 50% player health. This orb is derived from the full health base dot and a broken dot reference. Proper care ensures players can easily recognize medium health visually.\n\nTips and best practices: Use a 128x128 image for editing; final resizing occurs later. Clean up any artifacts using the Eraser Tool for smooth visuals. Ensure the medium orb maintains proportions similar to the full health orb. Naming convention: inf2_nameofskin or tank2_nameofskin.',
-        image: tutorial2,
+        image: skin2,
     },
     {
         title: 'Section 2.1: Low Health Orb (25%)',
         content: 'This step creates the low health orb, representing 25% player health. It uses a different broken dot reference than the medium orb to simulate damage and distinguish it visually. The low health orb should appear clearly damaged compared to other health states.\n\nTips and best practices: Recommended editing size is 128x128 pixels. Self drawn skins are slightly more likely to be added. Ensure alignment and proportions match previous health states, and clean any visual artifacts with the Eraser Tool. Save as inf1_nameofskin or tank1_nameofskin.',
-        image: tutorial3,
+        image: skin3,
     },
     {
         title: 'Section 2.2: Final Full Health Orb (Resized)',
         content: 'This step resizes your full health orb to the required in-game size of 200×200 pixels, ensuring proper display and visual clarity. Centering and alignment are important to prevent stretched or off-center images.\n\nTips and best practices: Keep the original 256×256 images for editing. Verify that the orb remains centered after resizing. Save as inf_nameofskin or tank_nameofskin. Self-drawn skins are slightly more likely to be added.',
-        image: tutorial4,
+        image: skin4,
     },
     {
         title: 'End / Workflow Completed',
         content: 'You have now completed the full health orb creation workflow. At this point, you should have three images representing full, medium, and low health states, all ready to be placed in the game’s skins folder.\n\nTips and best practices: Keep backups of all images. Test in-game to ensure the skins display correctly. Using self-drawn designs slightly increases the likelihood of them being added. Repeat the workflow for additional custom skins. Recommended editing size remains 128x128 pixels for clarity and consistency.',
-        image: tutorial5,
+        image: skin1
     }
 ];
